@@ -23,6 +23,7 @@ setlocale(LC_ALL,"es_ES");
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<meta name="keywords" content="">
+		<meta charset="utf-8">
 
 
 		<!-- Title -->
