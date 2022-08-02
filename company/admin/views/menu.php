@@ -43,17 +43,17 @@
 								<?php if ($pagina == 'userAdd' || $pagina == 'userList' ) 
 										echo 'active'; ?>" data-toggle="slide" href="#">
 										<i class="side-menu__icon icon icon-people"></i>
-										<span class="side-menu__label">Users</span>
+										<span class="side-menu__label">Usuarios</span>
 										<i class="angle fa fa-angle-right"></i>
 							</a>
 							<ul class="slide-menu">
 								<li><a class="slide-item 
 									<?php if ($pagina == 'userAdd') 
-											echo 'active'; ?>" href="index.php?page=userAdd">Add User</a>
+											echo 'active'; ?>" href="index.php?page=userAdd">Agregar</a>
 								</li>
 								<li><a class="slide-item 
 									<?php if ($pagina == 'userList') 
-											echo 'active'; ?>" href="index.php?page=userList">User List</a>
+											echo 'active'; ?>" href="index.php?page=userList">Lista</a>
 								</li>
 
 							</ul>
@@ -65,17 +65,38 @@
 								<?php if ($pagina == 'socioAdd' || $pagina == 'socioList' ) 
 										echo 'active'; ?>" data-toggle="slide" href="#">
 										<i class="side-menu__icon icon icon-people"></i>
-										<span class="side-menu__label">Clients</span>
+										<span class="side-menu__label">Clientes</span>
 										<i class="angle fa fa-angle-right"></i>
 							</a>
 							<ul class="slide-menu">
 								<li><a class="slide-item 
 									<?php if ($pagina == 'socioAdd') 
-											echo 'active'; ?>" href="index.php?page=socioAdd">Add Client</a>
+											echo 'active'; ?>" href="index.php?page=socioAdd">Agregar</a>
 								</li>
 								<li><a class="slide-item 
 									<?php if ($pagina == 'socioList') 
-											echo 'active'; ?>" href="index.php?page=socioList">List Client</a>
+											echo 'active'; ?>" href="index.php?page=socioList">Lista</a>
+								</li>
+
+							</ul>
+						</li>
+
+						<li class="slide <?php if ($pagina == 'proveedorAdd' || $pagina == 'proveedorList' ) echo 'is-expanded'; ?>">
+							<a class="side-menu__item 
+								<?php if ($pagina == 'proveedorAdd' || $pagina == 'proveedorList' ) 
+										echo 'active'; ?>" data-toggle="slide" href="#">
+										<i class="side-menu__icon icon icon-people"></i>
+										<span class="side-menu__label">Proveedores</span>
+										<i class="angle fa fa-angle-right"></i>
+							</a>
+							<ul class="slide-menu">
+								<li><a class="slide-item 
+									<?php if ($pagina == 'proveedorAdd') 
+											echo 'active'; ?>" href="index.php?page=proveedorAdd">Agregar</a>
+								</li>
+								<li><a class="slide-item 
+									<?php if ($pagina == 'proveedorList') 
+											echo 'active'; ?>" href="index.php?page=proveedorList">Lista</a>
 								</li>
 
 							</ul>
@@ -96,13 +117,13 @@
 							<a class="side-menu__item 
 								<?php if ($pagina == 'productAdd' || $pagina == 'productList' ) 
 										echo 'active'; ?>" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-cubes"></i>
-										<span class="side-menu__label">Products</span><i class="angle fa fa-angle-right"></i></a>
+										<span class="side-menu__label">Productos</span><i class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
 								<li><a class="slide-item <?php if ($pagina == 'productAdd') echo 'active'; ?>" 
-									href="index.php?page=productAdd"><i class="side-menu__icon fa fa-plus-circle"></i>Add</a>
+									href="index.php?page=productAdd"><i class="side-menu__icon fa fa-plus-circle"></i>Agregar</a>
 								</li>
 								<li><a class="slide-item <?php if ($pagina == 'productList') echo 'active'; ?>" 
-									href="index.php?page=productList"><i class="side-menu__icon fa fa-list-ul"></i>List</a>
+									href="index.php?page=productList"><i class="side-menu__icon fa fa-list-ul"></i>Lista</a>
 								</li>
 
 							</ul>
@@ -112,13 +133,13 @@
 							<a class="side-menu__item 
 								<?php if ($pagina == 'brandAdd' || $pagina == 'brandList' ) 
 										echo 'active'; ?>" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-star"></i>
-										<span class="side-menu__label">Brands</span><i class="angle fa fa-angle-right"></i></a>
+										<span class="side-menu__label">Marcas</span><i class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
 								<li><a class="slide-item <?php if ($pagina == 'brandAdd') echo 'active'; ?>" 
-									href="index.php?page=brandAdd"><i class="side-menu__icon fa fa-plus-circle"></i>Add</a>
+									href="index.php?page=brandAdd"><i class="side-menu__icon fa fa-plus-circle"></i>Agregar</a>
 								</li>
 								<li><a class="slide-item <?php if ($pagina == 'brandList') echo 'active'; ?>" 
-									href="index.php?page=brandList"><i class="side-menu__icon fa fa-list-ul"></i>List</a>
+									href="index.php?page=brandList"><i class="side-menu__icon fa fa-list-ul"></i>Lista</a>
 								</li>
 
 							</ul>
@@ -128,13 +149,13 @@
 							<a class="side-menu__item 
 								<?php if ($pagina == 'eqTypeAdd' || $pagina == 'eqTypeList' ) 
 										echo 'active'; ?>" data-toggle="slide" href="#"><i class="side-menu__icon fa fa-train"></i>
-										<span class="side-menu__label">Equipment Type</span><i class="angle fa fa-angle-right"></i></a>
+										<span class="side-menu__label">Categorías</span><i class="angle fa fa-angle-right"></i></a>
 							<ul class="slide-menu">
 								<li><a class="slide-item <?php if ($pagina == 'eqTypeAdd') echo 'active'; ?>" 
-									href="index.php?page=eqTypeAdd"><i class="side-menu__icon fa fa-plus-circle"></i>Type</a>
+									href="index.php?page=eqTypeAdd"><i class="side-menu__icon fa fa-plus-circle"></i>Agregar</a>
 								</li>
 								<li><a class="slide-item <?php if ($pagina == 'eqTypeList') echo 'active'; ?>" 
-									href="index.php?page=eqTypeList"><i class="side-menu__icon fa fa-list-ul"></i>List</a>
+									href="index.php?page=eqTypeList"><i class="side-menu__icon fa fa-list-ul"></i>Lista</a>
 								</li>
 
 							</ul>

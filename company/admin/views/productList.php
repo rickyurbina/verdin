@@ -17,10 +17,10 @@
 				<table id="example2" class="hover table-bordered border-top-0 border-bottom-0" style="text-align: center;">
 					<thead>
 						<th>Id</th>
-						<th>Name</th>
-						<th>Brand</th>
-						<th>Eq Type</th>
-						<th>Status</th>
+						<th>Nombre</th>
+						<th>Marca</th>
+						<th>Categoría</th>
+						<th>Disponibilidad</th>
 						<th>Options</th>
 					</thead>
 					<tbody>
@@ -34,10 +34,10 @@
 					<tfoot>
 						<tr>
 							<th>Id</th>
-							<th>Name</th>
-							<th>Brand</th>
-							<th>Eq Type</th>
-							<th>Status</th>
+							<th>Nombre</th>
+							<th>Marca</th>
+							<th>Categoría</th>
+							<th>Disponibilidad</th>
 							<th>Options</th>
 						</tr>
 					</tfoot>

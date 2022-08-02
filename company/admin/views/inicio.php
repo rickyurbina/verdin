@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h4 class="page-title">Welcome to DC Supply admin panel</h4>
+    <h4 class="page-title">Verdin - Admin panel</h4>
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Home</li>
     </ol>

@@ -10,10 +10,10 @@ class Conexion{
 		$password = "12345678";
 
 // conexion Server ------------------------------
-		// $bd = "rickurbi_gym";
+		// $bd = "rickurbi_verdin";
 		// $servername = "mysql1007.mochahost.com";
-		// $username = "rickurbi_gym";
-		// $password = "4Jc^vfpsG4W6";
+		// $username = "rickurbi_verdin";
+		// $password = "K-_B+LJv?D[-";
 
 		try {
 		    $conn = new PDO("mysql:host=$servername;dbname=$bd", $username, $password);

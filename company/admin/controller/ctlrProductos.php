@@ -196,18 +196,7 @@ Class productos {
                 <td>'.$item["name"].'</td>
                 <td>'.$item["brand"].'</td>
                 <td>'.$item["eqType"].'</td>
-                <td>
-                    <div class="item-action dropdown">
-                    '.$light.$item["status"].'
-                        <a href="javascript:void(0)" data-toggle="dropdown" class="icon" aria-expanded="false"><i class="fe fe-more-vertical fs-20 text-dark"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; transform: translate3d(-172px, 22px, 0px); top: 0px; left: 0px; will-change: transform;">
-                            <a href="index.php?page=productStatus&id='.$item["idProducto"].'&status=yard" class="dropdown-item"><i class="dropdown-icon fe fe-check"></i> Yard </a>
-                            <a href="index.php?page=productStatus&id='.$item["idProducto"].'&status=out" class="dropdown-item"><i class="dropdown-icon fe fe-thumbs-down"></i> out </a>
-                            <a href="index.php?page=productStatus&id='.$item["idProducto"].'&status=reserved" class="dropdown-item"><i class="dropdown-icon fe fe-alert-triangle"></i> Reserved </a>
-                            <a href="index.php?page=productStatus&id='.$item["idProducto"].'&status=maintenance" class="dropdown-item"><i class="dropdown-icon fe fe-codepen"></i> Maintenance </a>
-                        </div>
-                    </div>
-                </td>
+                <td>'.$item["disponibilidad"].' '.$item["medida"].'</td>
                 <td>
                     <div class="item-action dropdown">
                         <a href="javascript:void(0)" data-toggle="dropdown" class="icon" aria-expanded="false"><i class="fe fe-more-vertical fs-20 text-dark"></i></a>

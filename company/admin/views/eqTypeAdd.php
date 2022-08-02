@@ -1,15 +1,15 @@
 <div class="page-header">
-    <h4 class="page-title">Registro de Equipment Type</h4>
+    <h4 class="page-title">Registro Categoría</h4>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Equipment Admin</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Add Equipment Type</li>
+        <li class="breadcrumb-item"><a href="#">Types Admin</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add Type</li>
     </ol>
 </div>
 <div class="row ">
     <div class="col-lg-8">
         <form class="card" method="POST">
             <div class="card-header">
-                <h3 class="card-title">Información de Equipment</h3>
+                <h3 class="card-title">Información de Categoría</h3>
 
             </div>
             <div class="card-body">

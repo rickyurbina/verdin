@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h4 class="page-title">Registro de Brand</h4>
+    <h4 class="page-title">Registro de Marca</h4>
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Brands Admin</a></li>
         <li class="breadcrumb-item active" aria-current="page">Add Brand</li>
@@ -18,7 +18,7 @@
                     <div class="col-sm-8 col-md-8">
                         <div class="form-group">
                             <label class="form-label">Nombre</label>
-                            <input type="text" class="form-control" name="nombre" placeholder="John Deere" >
+                            <input type="text" class="form-control" name="nombre" placeholder="Manzana Golden" >
                         </div>
                     </div>
                     <!-- <div class="col-sm-6 col-md-6">

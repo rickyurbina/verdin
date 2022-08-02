@@ -11,7 +11,7 @@
     <div class="col-lg-8">
         <form enctype="multipart/form-data" class="card" method="POST">
             <div class="card-header">
-                <h3 class="card-title">New Product Information</h3>
+                <h3 class="card-title">Registro de nuevo producto</h3>
 
             </div>
             <div class="card-body">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
-                        <label class="form-label">Brand</label>
+                        <label class="form-label">Marca</label>
                         <select class="form-control" name="brand">
                             <?php $brands = new Brands(); $brands -> ctlListBrands();?>
                         </select>
@@ -34,31 +34,31 @@
 
                 <div class="col-sm-6 col-md-5">
                     <div class="form-group">
-                        <label class="form-label">Equipment Type</label>
+                        <label class="form-label">Categoria</label>
                         <select class="form-control" name="eqType">
                             <?php $eqTypes = new equipmentType(); $eqTypes -> ctlListEqTypes();?>
                         </select>
                     </div>
                 </div>
-
+                
                 <div class="col-sm-6 col-md-4">
                     <div class="form-group">
-                        <label class="form-label">Day Cost</label>
-                        <input type="number" class="form-control" name="dayPrice" placeholder="Don't include   $ , ' " >
+                        <label class="form-label">Precio 1</label>
+                        <input type="number" class="form-control" name="dayPrice" placeholder="No incluya signos  $ , ' " >
                     </div>
                 </div>
 
                 <div class="col-sm-6 col-md-4">
                     <div class="form-group">
-                        <label class="form-label">Week Cost</label>
-                        <input type="number" class="form-control" name="weekPrice" placeholder="Don't include   $ , ' " >
+                        <label class="form-label">Precio 2</label>
+                        <input type="number" class="form-control" name="weekPrice" placeholder="No incluya signos  $ , ' " >
                     </div>
                 </div>
 
                 <div class="col-sm-6 col-md-4">
                     <div class="form-group">
-                        <label class="form-label"> Month Cost</label>
-                        <input type="number" class="form-control" name="monthPrice" placeholder="Don't include   $ , ' " >
+                        <label class="form-label"> Precio 3</label>
+                        <input type="number" class="form-control" name="monthPrice" placeholder="No incluya signos  $ , ' " >
                     </div>
                 </div>
                 
@@ -74,7 +74,7 @@
                 
                 <div class="col-lg-3 col-sm-12"><p></p></div>
                     <div class="col-lg-6 col-sm-12">
-                        <label class="form-label">Image</label>
+                        <label class="form-label">Imagen</label>
                             <input type="file" class="dropify" name="image" data-height="180"  
                             data-allowed-file-extensions="jpg png jpeg" />
                     </div>    
@@ -82,7 +82,7 @@
                 
             </div>
             <div class="card-footer text-right">
-                <button type="submit" name="registrar" class="btn btn-primary">Add Product</button>
+                <button type="submit" name="registrar" class="btn btn-primary">Guardar</button>
             </div>
             <?php
                  $registro = new productos();
@@ -95,7 +95,7 @@
     <div class="col-xl-4 col-lg-12 col-md-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Custon Features</h3>                
+                <h3 class="card-title">Valores personalizados</h3>                
             </div>
             <br>
             <form id="featuresForm">
@@ -104,12 +104,12 @@
                         <div class="row">
                             
                             <div class="col-sm-5 col-md-5">
-                                <label class="form-label">Feature</label>
+                                <label class="form-label">Característica</label>
                                 <input type="text" class="form-control" id="featName">
                             </div>
                             
                             <div class="col-sm-5 col-md-5">
-                                <label class="form-label">Value</label>
+                                <label class="form-label">Valor</label>
                                 <input type="text" class="form-control" id="featValue">
                             </div>
                             <div class="col-sm-1 col-md-1">

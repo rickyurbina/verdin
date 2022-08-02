@@ -136,6 +136,10 @@ setlocale(LC_ALL,"es_ES");
 										$pagina == "userList" || 
 										$pagina == "userAdd" ||
 										$pagina == "userDel" ||
+										$pagina == "proveedorEdit" || 
+										$pagina == "proveedorList" || 
+										$pagina == "proveedorAdd" ||
+										$pagina == "proveedorDel" ||
 										$pagina == "brandAdd" ||
 										$pagina == "brandList" ||
 										$pagina == "brandEdit" ||
