@@ -202,6 +202,7 @@ Class productos {
                         <a href="javascript:void(0)" data-toggle="dropdown" class="icon" aria-expanded="false"><i class="fe fe-more-vertical fs-20 text-dark"></i></a>
                         <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; transform: translate3d(-172px, 22px, 0px); top: 0px; left: 0px; will-change: transform;">
                             <a href="index.php?page=productEdit&idEditar='.$item["idProducto"].'" class="dropdown-item"><i class="dropdown-icon fe fe-edit-2"></i> Edit </a>
+                            <a href="index.php?page=entradaAdd&idEntrada='.$item["idProducto"].'" class="dropdown-item"><i class="dropdown-icon icon-login"></i> Entrada </a>
                             <a href="index.php?page=productList&idBorrar='.$item["idProducto"].'" class="dropdown-item"><i class="dropdown-icon fe fe-user-x"></i> Delete </a>
                         </div>
                     </div>

@@ -139,7 +139,20 @@ Class providers {
 	}
 
 
-    	#BORRAR USUARIO
+    #-------------------------------------
+	#Lista todas los proveedores en un select
+	#------------------------------------
+	public static function ctlListProveedores(){
+
+		$respuesta = mdlProviders::mdlListProveedores("proveedores");
+
+		foreach ($respuesta as $row => $item){
+			echo  '<option value="'.$item["idProveedor"].'">'.$item["nombre"].'</option>';
+		}
+	}
+
+
+    	#BORRAR PROVEEDOR
 	#------------------------------------
 	public static function ctrBorrarCliente(){
 		if (isset($_GET['idBorrar'])){

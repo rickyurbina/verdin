@@ -1,3 +1,7 @@
+$('#fechaMovimiento').datepicker({
+    format:'mm/dd/yyyy',
+}).datepicker("setDate",'now');
+
 function buscaJS(name) {
     if(name != ""){
         fetchSearchData(name);

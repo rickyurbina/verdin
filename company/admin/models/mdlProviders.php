@@ -65,6 +65,18 @@ class mdlProviders {
 
 	}
 
+    #----------------------------------------------------------------
+	#  Lista el nombre de los proveedores registrados para un select
+	#----------------------------------------------------------------
+
+	public static function mdlListProveedores($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT idProveedor, nombre FROM $tabla ORDER BY nombre ASC");
+		$stmt->execute();
+		return $stmt->fetchAll();
+
+	}
+
 
     	#BUSCA UN CLIENTE
 	#-------------------------------------
