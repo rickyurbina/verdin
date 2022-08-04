@@ -21,9 +21,9 @@
 							href="index.php?page=inicio"><i class="side-menu__icon fa fa-home"></i><span class="side-menu__label">Home</span></a>
 						</li>
 
-						<li class="slide <?php if ($pagina == 'entradas') echo 'is-expanded'; ?>">
-							<a class="side-menu__item <?php if ($pagina == 'entradas') echo 'active'; ?>" 
-							href="index.php?page=entradas"><i class="side-menu__icon icon-login"></i><span class="side-menu__label">Entradas</span></a>
+						<li class="slide <?php if ($pagina == 'entradas' || $pagina == 'entradasList') echo 'is-expanded'; ?>">
+							<a class="side-menu__item <?php if ($pagina == 'entradas' || $pagina == 'entradasList') echo 'active'; ?>" 
+							href="index.php?page=entradasList"><i class="side-menu__icon icon-login"></i><span class="side-menu__label">Entradas</span></a>
 						</li>
 
 						<!-- <li class="slide <?//php if ($pagina == 'search') echo 'is-expanded'; ?>">

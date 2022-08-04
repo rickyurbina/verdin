@@ -17,26 +17,28 @@
 				<table id="example2" class="hover table-bordered border-top-0 border-bottom-0" style="text-align: center;">
 					<thead>
 						<td>Nombre</td>
-						<td>Dirección</td>
-						<td>Teléfono</td>
+						<td>Lote</td>
+						<td>Cantidad</td>
+						<td>Costo</td>
 						<td>Fecha Registro</td>
-						<td>Opciones</td>
+						<td>opciones</td>
 					</thead>
 					<tbody>
 						<?php
-							$lista = new providers();
-							$lista -> ctrListaProveedores();
-							$lista -> ctrBorrarCliente();
+							$lista = new Movimientos();
+							$lista -> ctrListaEntradas();
+							$lista -> ctrBorrarEntrada();
 						?>
 						
 					</tbody>
 					<tfoot>
 						<tr>
 							<td>Nombre</td>
-							<td>Dirección</td>
-							<td>Teléfono</td>
+							<td>Lote</td>
+							<td>Cantidad</td>
+							<td>Costo</td>
 							<td>Fecha Registro</td>
-							<td>Opciones</td>
+							<td>opciones</td>
 						</tr>
 					</tfoot>
 				</table>

@@ -1,17 +1,17 @@
 <?php
-    $respuesta = mdlClientes::mdlBorrarCliente($_GET["idBorrar"],"clientes");  
+    $respuesta = mdlMovimientos::mdlBorrarEntrada($_GET["idBorrar"],"entradas");  
 
     if ($respuesta == "success"){
         echo "<script>
         Swal.fire({
             title: 'Borrado',
-            text: 'El cliente ha sio borrado',
+            text: 'El registro ha sio borrado',
             icon: 'error',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Ok'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location='index.php?page=clientList'
+                window.location='index.php?page=entradasList'
             }
         })
       </script>";
@@ -26,7 +26,7 @@
             confirmButtonText: 'Ok'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location='index.php?page=clientList'
+                window.location='index.php?page=entradasList'
             }
         })
       </script>";

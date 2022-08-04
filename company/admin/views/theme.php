@@ -128,6 +128,9 @@ setlocale(LC_ALL,"es_ES");
 						<?php
 								if($pagina=="inicio" ||
 										$pagina == "entradaAdd" || 
+										$pagina == "entradasList" || 
+										$pagina == "entradaEdit" || 
+										$pagina == "entradaDel" || 
 										$pagina == "salidas" ||
 										$pagina == "search" ||
 										$pagina == "asistencia" ||
