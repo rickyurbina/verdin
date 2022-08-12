@@ -244,6 +244,19 @@ Class productos {
 		}
 	}
 
+
+    #-------------------------------------
+	#Lista todas los productos en un select
+	#------------------------------------
+	public static function ctlListProductos(){
+
+		$respuesta = mdlProductos::mdlListProductos("productos");
+
+		foreach ($respuesta as $row => $item){
+			echo  '<option value="'.$item["idProducto"].'">'.$item["name"].'</option>';
+		}
+	}
+
 }//Class
 
 ?>

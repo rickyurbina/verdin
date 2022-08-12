@@ -127,6 +127,7 @@ setlocale(LC_ALL,"es_ES");
                         <!-- Contenido  -->
 						<?php
 								if($pagina=="inicio" ||
+										$pagina == "entradas" || 
 										$pagina == "entradaAdd" || 
 										$pagina == "entradasList" || 
 										$pagina == "entradaEdit" || 
@@ -360,6 +361,7 @@ setlocale(LC_ALL,"es_ES");
 		<?php
 			if ($pagina == "productAdd") echo '<script src="js/app.js"></script>';
 			if ($pagina == "productEdit") echo '<script src="js/appEdit.js"></script>';
+			if ($pagina == "entradas") echo '<script src="js/entradaProductos.js"></script>';
 		?>
 
 	</body>

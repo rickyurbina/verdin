@@ -119,6 +119,18 @@ class mdlProductos {
 		//$stmt -> close();
 	}
 
+	#----------------------------------------------------------------
+	#  Lista el nombre de los productos registrados para un select
+	#----------------------------------------------------------------
+
+	public static function mdlListProductos($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT idProducto, name FROM $tabla ORDER BY name ASC");
+		$stmt->execute();
+		return $stmt->fetchAll();
+
+	}
+
 
 }// Class
 
