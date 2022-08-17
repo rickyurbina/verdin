@@ -1,8 +1,14 @@
+<?php
+    $orden = $_GET["idEntrada"];
+    $busca = mdlMovimientos::mdlBuscaEntrada($orden, "entradasEnc");
+    $productosJSON = productos::ctlBuscaProdsJSON($orden);
+?>
+
 <div class="page-header">
-    <h4 class="page-title">Registro de Productos</h4>
+    <h4 class="page-title">Edicion de Entradas de Productos</h4>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#">Products Admin</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Products Register</li>
+        <li class="breadcrumb-item"><a href="#">Stock Admin</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Stock Order Edit</li>
     </ol>
 </div>
 <form method="POST" name="entradas">
@@ -16,15 +22,16 @@
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="form-label"># Orden</label>
-                            <input type="text" class="form-control" name="ordenNum" id="ordenNum">
+                            <label class="form-label text-center"># Orden</label>
+                            <h3 class="text-center"><strong> <?php echo $busca['orden']; ?></strong></h3>
+                            <input type="text" class="form-control" name="ordenNum" id="ordenNum" value="<?php echo $busca["orden"] ?>" hidden>
                         </div>
                     </div>
                     <div class="col-sm-4 col-md-4">
                         <div class="form-group">
                             <label class="form-label">Proveedor</label>
-                            <select class="form-control" name="idProveedor" id="idProveedor">
-                                <?php $proveedores = new providers(); $proveedores -> ctlListProveedores();?>
+                            <select class="form-control" name="idProveedor">
+                                <?php $proveedores = new Movimientos(); $proveedores -> ctlListProveedoresSelected($busca['idProveedor']);?>
                             </select>
                         </div>
                     </div>
@@ -32,16 +39,18 @@
                         <div class="form-group">
                             <label class="form-label">Concepto</label>
                             <select class="form-control custom-select select2" name="concepto" id="concepto">
-                                <option value="entrada">Entrada</option>
-                                <option value="ajuste">Ajuste</option>
-                                <option value="saldo">Saldo Inicial</option>
+                                <?php
+                                    if($busca['concepto'] == 'entrada') echo '<option value="entrada" selected>Entrada</option>'; else echo '<option value="entrada">Entrada</option>';  
+                                    if($busca['concepto'] == 'ajuste') echo '<option value="ajuste" selected>Ajuste</option>'; else echo '<option value="ajuste">Ajuste</option>';  
+                                    if($busca['concepto'] == 'saldo inicial') echo '<option value="saldo inicial" selected>saldo inicial</option>'; else echo '<option value="saldo inicial">Saldo Inicial</option>';  
+                                ?>
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-3 col-md-3">
                         <div class="form-group">
                             <label class="form-label">Fecha</label>
-                            <input class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="text" name="fechaMovimiento" id="fechaMovimiento">
+                            <input class="form-control fc-datepicker" type="text" name="fechaMovimiento" value="<?php echo $busca["fecha"]; ?>" >
                         </div>
                     </div>
                     <div class="col-sm-9 col-md-9">
@@ -112,14 +121,14 @@
     </div>
     <div class="col-sm-12 ">
         <div class="form-group">
-            <input type="text" class="form-control" name="productosBD" id="productosBD" hidden>
+            <input type="text" class="form-control" name="productosBD" id="productosBD" value='<?php echo $productosJSON; ?>' hidden>
         </div>
     </div>
     <!-- end col -->
 
 </div >
 <div class="text-right">
-    <button type="submit" id="regOrden" name="regOrden" class="btn btn-primary">Guardar Orden</button>
+    <button type="submit" id="regOrden" name="updtOrden" class="btn btn-warning">Actualizar Orden</button>
 </div>
     
 
@@ -151,7 +160,7 @@
 
 <?php
     $registro = new Movimientos();
-    $registro -> ctlRegistraOrden();
+    $registro -> ctlEditaOrden();
     
 ?>
 

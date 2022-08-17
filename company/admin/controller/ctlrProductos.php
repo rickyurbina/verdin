@@ -257,6 +257,14 @@ Class productos {
 		}
 	}
 
+    #   ---------------------------------------------------------------------------------------------
+    #   Busca los propductos asociados a una orden para editar dicha orden en entradasEdit.php
+    #   ---------------------------------------------------------------------------------------------
+    public static function ctlBuscaProdsJSON($orden){
+        $productos = mdlProductos::mdlListProductosJSON($orden);
+        return $productos;
+    }
+
 }//Class
 
 ?>

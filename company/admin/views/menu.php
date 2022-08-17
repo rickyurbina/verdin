@@ -21,9 +21,30 @@
 							href="index.php?page=inicio"><i class="side-menu__icon fa fa-home"></i><span class="side-menu__label">Home</span></a>
 						</li>
 
-						<li class="slide <?php if ($pagina == 'entradas' || $pagina == 'entradasList') echo 'is-expanded'; ?>">
+						<!-- <li class="slide <?php if ($pagina == 'entradas' || $pagina == 'entradasList') echo 'is-expanded'; ?>">
 							<a class="side-menu__item <?php if ($pagina == 'entradas' || $pagina == 'entradasList') echo 'active'; ?>" 
 							href="index.php?page=entradasList"><i class="side-menu__icon icon-login"></i><span class="side-menu__label">Entradas</span></a>
+						</li> -->
+
+						<li class="slide <?php if ($pagina == 'entradas' || $pagina == 'entradasList' ) echo 'is-expanded'; ?>">
+							<a class="side-menu__item 
+								<?php if ($pagina == 'entradas' || $pagina == 'entradasList' ) 
+										echo 'active'; ?>" data-toggle="slide" href="#">
+										<i class="side-menu__icon icon-login"></i>
+										<span class="side-menu__label">Entradas</span>
+										<i class="angle fa fa-angle-right"></i>
+							</a>
+							<ul class="slide-menu">
+								<li><a class="slide-item 
+									<?php if ($pagina == 'userAdd') 
+											echo 'active'; ?>" href="index.php?page=entradas">Registrar</a>
+								</li>
+								<li><a class="slide-item 
+									<?php if ($pagina == 'userList') 
+											echo 'active'; ?>" href="index.php?page=entradasList">Lista</a>
+								</li>
+
+							</ul>
 						</li>
 
 						<!-- <li class="slide <?//php if ($pagina == 'search') echo 'is-expanded'; ?>">

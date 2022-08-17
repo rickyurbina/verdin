@@ -30,6 +30,95 @@ class mdlMovimientos {
         }
     }
 
+    # ------------------------------------------------------------------------------------------
+    #  Registra el encabezado de una orden en la tabla de entradasEnc
+    # ------------------------------------------------------------------------------------------
+
+    public static function mdlRegistraOrden($datos_orden){
+
+        $stmt = Conexion::conectar()->prepare("INSERT INTO `entradasEnc` ( `orden`, `idProveedor`, `concepto`, `fecha`) 
+        VALUES ( :orden, :idProveedor, :concepto, :fechaMovimiento);");
+
+         $stmt -> bindParam(":orden", $datos_orden["orden"], PDO::PARAM_INT);         
+         $stmt -> bindParam(":idProveedor", $datos_orden["idProveedor"], PDO::PARAM_INT);
+         $stmt -> bindParam(":concepto", $datos_orden["concepto"], PDO::PARAM_STR);
+         $stmt -> bindParam(":fechaMovimiento", $datos_orden["fechaMovimiento"], PDO::PARAM_STR);
+        //  $stmt2 = Conexion::conectar()->prepare("UPDATE productos SET disponibilidad = (SELECT SUM(`cantidad`) FROM `entradas` WHERE `idProducto`= :idProducto) WHERE idProducto = :idProducto");
+        //  $stmt2 -> bindParam(":idProducto", $datos["idProducto"], PDO::PARAM_INT);
+         
+        if ($stmt -> execute()){
+                return "ok";
+        }
+        else {
+            return "error_orden";
+        }
+    }
+
+
+    # ------------------------------------------------------------------------------------------
+    #  Actualiza el encabezado de una orden en la tabla de entradasEnc
+    # ------------------------------------------------------------------------------------------
+
+    public static function mdlActualizaOrden($datos_orden){
+
+        $stmt = Conexion::conectar()->prepare("UPDATE `entradasEnc` SET `idProveedor` = :idProveedor,  `concepto`= :concepto,  `fecha` = :fechaMovimiento WHERE `orden` = :orden;");
+
+         $stmt -> bindParam(":orden", $datos_orden["orden"], PDO::PARAM_INT);         
+         $stmt -> bindParam(":idProveedor", $datos_orden["idProveedor"], PDO::PARAM_INT);
+         $stmt -> bindParam(":concepto", $datos_orden["concepto"], PDO::PARAM_STR);
+         $stmt -> bindParam(":fechaMovimiento", $datos_orden["fechaMovimiento"], PDO::PARAM_STR);
+        //  $stmt2 = Conexion::conectar()->prepare("UPDATE productos SET disponibilidad = (SELECT SUM(`cantidad`) FROM `entradas` WHERE `idProducto`= :idProducto) WHERE idProducto = :idProducto");
+        //  $stmt2 -> bindParam(":idProducto", $datos["idProducto"], PDO::PARAM_INT);
+         
+        if ($stmt -> execute()){
+                return "ok";
+        }
+        else {
+            return "error_orden";
+        }
+    }
+
+    # ------------------------------------------------------------------------------------------
+    #  Registra los productos de una orden indivudualmente en la tabla de entradas 
+    # ------------------------------------------------------------------------------------------
+
+    public static function mdlRegistraProdsOrden($datos_prods){
+
+        $stmt = Conexion::conectar()->prepare("INSERT INTO `entradas` (`id`,`idProducto`, `lote`, `cantidad`, `medida`, `costo`, `orden`) 
+        VALUES (NULL, :idProducto, :lote, :cantidad, :medida, :costo, :orden);");
+        
+         $stmt -> bindParam(":idProducto", $datos_prods["idProducto"], PDO::PARAM_INT);
+         $stmt -> bindParam(":lote", $datos_prods["lote"], PDO::PARAM_STR);
+         $stmt -> bindParam(":cantidad", $datos_prods["cantidad"], PDO::PARAM_INT);
+         $stmt -> bindParam(":medida", $datos_prods["medida"], PDO::PARAM_STR);
+         $stmt -> bindParam(":costo", $datos_prods["costo"], PDO::PARAM_STR);
+         $stmt -> bindParam(":orden", $datos_prods["orden"], PDO::PARAM_INT);
+
+         $stmt2 = Conexion::conectar()->prepare("UPDATE productos SET disponibilidad = (SELECT SUM(`cantidad`) FROM `entradas` WHERE `idProducto`= :idProducto) WHERE idProducto = :idProducto");
+         $stmt2 -> bindParam(":idProducto", $datos_prods["idProducto"], PDO::PARAM_INT);
+         
+        if ($stmt -> execute()){
+            if($stmt2 -> execute())
+                return "ok";
+        }
+        else {
+            return "error_prods";
+        }
+    }
+
+    # ------------------------------------------------------------------------------------------
+    # Elimina todos los productos relacionados con una orden 
+    # ------------------------------------------------------------------------------------------
+    public static function mdlEliminaProds($orden){
+        $stmt = Conexion::conectar()->prepare("DELETE FROM entradas WHERE `orden` = $orden;");
+        if($stmt->execute()){
+            return "ok";
+        }
+        else{
+            return "error";
+        }
+
+    }
     # ---------------------------------------------
     #        Actualizar una entrada de inventario 
     # ---------------------------------------------
@@ -60,7 +149,7 @@ class mdlMovimientos {
 
 	public static function mdlBuscaEntrada($entrada, $tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE orden = :id");
 
 		$stmt->bindParam(":id", $entrada, PDO::PARAM_INT);
 
@@ -76,12 +165,12 @@ class mdlMovimientos {
 
 	public static function mdlListaEntradas($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT e.*, p.name as producto, v.nombre as proveedor
-                                                FROM entradas AS e
-                                                INNER JOIN productos AS p
-                                                    ON e.idProducto = p.idProducto
+		 $stmt = Conexion::conectar()->prepare("SELECT e.*, v.nombre as proveedor
+                                                FROM entradasEnc AS e
                                                 INNER JOIN proveedores AS v
-                                                    ON e.idProveedor = v.idProveedor");
+                                                ON e.idProveedor = v.idProveedor");
+
+        //$stmt = Conexion::conectar()->prepare("SELECT * from $tabla order by orden");
 		$stmt->execute();
 
 		#fetchAll(): Obtiene todas las filas de un conjunto de resultados asociado al objeto PDOStatement.
@@ -103,6 +192,23 @@ class mdlMovimientos {
 			return "error";
 		}
 		//$stmt -> close();
+	}
+
+    #-------------------------------------
+    # Borrar Entrada de inventario
+	#-------------------------------------
+	public static function mdlBorrarEnc_Entradas($datosModel){
+		$stmt = Conexion::conectar()->prepare("DELETE FROM entradasEnc WHERE orden = :id");
+		$stmt -> bindPARAM(":id",$datosModel, PDO::PARAM_INT);
+
+        $stmt2 = Conexion::conectar()->prepare("DELETE FROM entradas WHERE orden = :id");
+        $stmt2 -> bindPARAM(":id",$datosModel, PDO::PARAM_INT);
+
+		if ($stmt->execute() && $stmt2->execute()){
+			return "success";
+		} else {
+			return "error";
+		}
 	}
 
     #----------------------------------------------------------------

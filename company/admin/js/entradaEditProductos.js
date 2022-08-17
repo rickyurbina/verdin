@@ -6,6 +6,8 @@ const proveedor = document.querySelector("#proveedor");
 const concepto = document.querySelector("#concepto");
 const fechaMovimiento = document.querySelector("#fechaMovimiento");
 const idProducto = document.querySelector("#idProducto");
+const productosBD = document.querySelector("#productosBD");
+console.log(productosBD.value);
 
 
 const lote = document.querySelector("#lote");
@@ -29,9 +31,13 @@ function eventListeners(){
     // cuando el documento esta listo despues de recargar
     // si el localStorege no se encuentra entonces inicializa con un arreglo vacio
     document.addEventListener('DOMContentLoaded', ()=>{
-        //productos = JSON.parse( localStorage.getItem('productos')) || [];
+
+
+        localStorage.setItem('productos', productosBD.value);
+
+        productos = JSON.parse( localStorage.getItem('productos')) || [];
         // console.log(features);
-        //crearHTML();
+        crearHTML();
     });
 }
 

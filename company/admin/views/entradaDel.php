@@ -1,5 +1,5 @@
 <?php
-    $respuesta = mdlMovimientos::mdlBorrarEntrada($_GET["idBorrar"],"entradas");  
+    $respuesta = mdlMovimientos::mdlBorrarEnc_Entradas($_GET["idBorrar"]);  
 
     if ($respuesta == "success"){
         echo "<script>

@@ -130,7 +130,8 @@ setlocale(LC_ALL,"es_ES");
 										$pagina == "entradas" || 
 										$pagina == "entradaAdd" || 
 										$pagina == "entradasList" || 
-										$pagina == "entradaEdit" || 
+										$pagina == "entradasEdit" || 
+										$pagina == "entradaEdit_" || 
 										$pagina == "entradaDel" || 
 										$pagina == "salidas" ||
 										$pagina == "search" ||
@@ -362,6 +363,7 @@ setlocale(LC_ALL,"es_ES");
 			if ($pagina == "productAdd") echo '<script src="js/app.js"></script>';
 			if ($pagina == "productEdit") echo '<script src="js/appEdit.js"></script>';
 			if ($pagina == "entradas") echo '<script src="js/entradaProductos.js"></script>';
+			if ($pagina == "entradasEdit") echo '<script src="js/entradaEditProductos.js"></script>';
 		?>
 
 	</body>

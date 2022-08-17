@@ -17,6 +17,10 @@ function eventListeners(){
     // cuando el documento esta listo despues de recargar
     // si el localStorege no se encuentra entonces inicializa con un arreglo vacio
     document.addEventListener('DOMContentLoaded', ()=>{
+
+
+
+        
         features = JSON.parse( localStorage.getItem('features')) || [];
         // console.log(features);
         crearHTML();
@@ -117,7 +121,6 @@ function crearHTML(){
 function sincronizarStorage(){
     localStorage.setItem('features', JSON.stringify(features));
     // actualizamos el la caja de texto todas las features para ser insertadas en la BD
-    // document.querySelector('#featuresBD').value = features;
     featuresBD.value = JSON.stringify(features);
 }
 

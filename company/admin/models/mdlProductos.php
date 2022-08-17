@@ -130,6 +130,22 @@ class mdlProductos {
 		return $stmt->fetchAll();
 
 	}
+	#	----------------------------------------------------------------------------------------
+	#	Busca los productos asociados a una orden y los regresa como un JSON
+	# 	----------------------------------------------------------------------------------------
+
+	public static function mdlListProductosJSON($orden){
+		$prodsArray = array();
+		$stmt = Conexion::conectar()->prepare("SELECT e.*, p.name as producto
+												FROM entradas AS e
+												INNER JOIN productos AS p
+												ON e.idProducto = p.idProducto WHERE orden = $orden");
+		$stmt->execute();
+        while($row=$stmt->fetchAll(PDO::FETCH_ASSOC)){
+			$prodsArray = $row;
+	  }
+        return json_encode($prodsArray);
+	}
 
 
 }// Class

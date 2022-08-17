@@ -1,6 +1,164 @@
 <?php
 Class Movimientos {
 
+    public static function ctlRegistraOrden(){
+      if(isset($_POST["regOrden"])){
+        
+        $prods = json_decode($_POST["productosBD"], true);
+        
+        $original_date = $_POST["fechaMovimiento"];
+        $timestamp = strtotime($original_date);
+        $fechaMovimiento = date("Y-m-d", $timestamp);
+
+        $datos_orden = array ("idProveedor" => $_POST["idProveedor"],
+                                "orden" => $_POST["ordenNum"],
+                                "concepto" => $_POST["concepto"],
+                                "fechaMovimiento" => $fechaMovimiento);
+        
+        $ingresa = mdlMovimientos::mdlRegistraOrden($datos_orden);
+
+        // por cada producto en la orden registro en la tabla de entradas
+        foreach ($prods as $row => $item){
+          $datos_prods = array( "idProducto" => $item["idProducto"],
+                                "lote" => $item["lote"],
+                                "cantidad" => $item["cantidad"],
+                                "medida" => $item["medida"],
+                                "costo" => $item["costo"],
+                                "orden" => $_POST["ordenNum"]);
+          // Mandar llamar el metodo del modelo que inserta los datos en la tabla 
+          $ingresa = mdlMovimientos::mdlRegistraProdsOrden($datos_prods);
+          // monitorear si hay error al insertar los datos y mostrar mensaje
+        }
+
+        if ($ingresa != 'error'){
+          echo "<script>Swal.fire({
+            title: 'Registro Exitoso',
+            text: 'El nuevo usuario ha sio registrado',
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location='index.php?page=entradasList'
+            }
+          })
+          </script>";
+        }
+        else if($ingresa == 'error_orden'){
+          echo "<script>Swal.fire({
+            title: 'Error en Orden',
+            text: 'No se pudo guardar la información de la Orden',
+            icon: 'danger',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location='index.php?page=entradasList'
+            }
+          })
+          </script>";
+        }
+        else if($ingresa == 'error_prods'){
+          echo "<script>Swal.fire({
+            title: 'Error en Productos',
+            text: 'No se pudo guardar la información de los Productos',
+            icon: 'danger',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location='index.php?page=entradasList'
+            }
+          })
+          </script>";
+        }
+        
+      }
+    }
+
+    #--------------------------------------------------------------------------------------------------------
+    # Actualiza los datos de ordenEnc y borra los datos de productos en entradas para despues volver a insertarlos
+    #--------------------------------------------------------------------------------------------------------
+    public static function ctlEditaOrden(){
+      if(isset($_POST["updtOrden"])){
+        
+        $prods = json_decode($_POST["productosBD"], true);
+        
+        $original_date = $_POST["fechaMovimiento"];
+        $timestamp = strtotime($original_date);
+        $fechaMovimiento = date("Y-m-d", $timestamp);
+
+        $datos_orden = array ("idProveedor" => $_POST["idProveedor"],
+                                "orden" => $_POST["ordenNum"],
+                                "concepto" => $_POST["concepto"],
+                                "fechaMovimiento" => $fechaMovimiento);
+        
+        $ingresa = mdlMovimientos::mdlActualizaOrden($datos_orden);
+        if ($ingresa != 'error'){
+          $updtProds = mdlMovimientos::mdlEliminaProds($_POST['ordenNum']);
+          if ($updtProds != "error"){
+            // por cada producto en la orden registro en la tabla de entradas
+            foreach ($prods as $row => $item){
+              $datos_prods = array( "idProducto" => $item["idProducto"],
+                                    "lote" => $item["lote"],
+                                    "cantidad" => $item["cantidad"],
+                                    "medida" => $item["medida"],
+                                    "costo" => $item["costo"],
+                                    "orden" => $_POST["ordenNum"]);
+              // Mandar llamar el metodo del modelo que inserta los datos en la tabla 
+              $ingresa = mdlMovimientos::mdlRegistraProdsOrden($datos_prods);
+              // monitorear si hay error al insertar los datos y mostrar mensaje
+            }
+          }
+        }
+
+        if ($ingresa != 'error'){
+          echo "<script>Swal.fire({
+            title: 'Registro Exitoso',
+            text: 'El nuevo usuario ha sio registrado',
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location='index.php?page=entradasList'
+            }
+          })
+          </script>";
+        }
+        else if($ingresa == 'error_orden'){
+          echo "<script>Swal.fire({
+            title: 'Error en Orden',
+            text: 'No se pudo guardar la información de la Orden',
+            icon: 'danger',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location='index.php?page=entradasList'
+            }
+          })
+          </script>";
+        }
+        else if($ingresa == 'error_prods'){
+          echo "<script>Swal.fire({
+            title: 'Error en Productos',
+            text: 'No se pudo guardar la información de los Productos',
+            icon: 'danger',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location='index.php?page=entradasList'
+            }
+          })
+          </script>";
+        }
+        
+      }
+    }
+
+
 
     public static function ctrRegistraEntrada(){
         if(isset($_POST["nombre"])){
@@ -62,24 +220,23 @@ Class Movimientos {
     #------------------------------------------------------------------------------------------------
     public static function ctrListaEntradas(){
 
-      $respuesta = mdlMovimientos::mdlListaEntradas("entradas");
+      $respuesta = mdlMovimientos::mdlListaEntradas("entradasEnc");
   
       foreach ($respuesta as $row => $item){
               $registro = strftime("%d de %B de %Y", strtotime($item["fecha"]));
   
               echo '
               <tr>
-                  <td>'.$item["producto"].'</td>
-                  <td>'.$item["lote"].'</td>                 
-                  <td>'.$item["cantidad"].' '.$item["medida"].'</td>                  
-                  <td>'.$item["costo"].'</td>
+                  <td>'.$item["orden"].'</td>
+                  <td>'.$item["proveedor"].'</td>                 
+                  <td>'.$item["concepto"].'</td>                  
                   <td>'.$registro.'</td>
                   <td>
                       <div class="item-action dropdown">
                           <a href="javascript:void(0)" data-toggle="dropdown" class="icon" aria-expanded="false"><i class="fe fe-more-vertical fs-20 text-dark"></i></a>
                           <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; transform: translate3d(-172px, 22px, 0px); top: 0px; left: 0px; will-change: transform;">
-                              <a href="index.php?page=entradaEdit&idEntrada='.$item["id"].'" class="dropdown-item"><i class="dropdown-icon fe fe-edit-2"></i> Editar </a>
-                              <a href="index.php?page=entradasList&idBorrar='.$item["id"].'" class="dropdown-item"><i class="dropdown-icon fe fe-user-x"></i> Borrar </a>
+                              <a href="index.php?page=entradasEdit&idEntrada='.$item["orden"].'" class="dropdown-item"><i class="dropdown-icon fe fe-edit-2"></i> Editar </a>
+                              <a href="index.php?page=entradasList&idBorrar='.$item["orden"].'" class="dropdown-item"><i class="dropdown-icon fe fe-user-x"></i> Borrar </a>
                           </div>
                       </div>
                   </td>
@@ -165,7 +322,6 @@ Class Movimientos {
       echo '<script>console.log("nada");</script>';
     }
 	}
-
 
   #-------------------------------------------------------------------------
 	# Lista proveedores en un select para el registro de entradas, recibe un valor
