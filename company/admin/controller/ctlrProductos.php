@@ -258,12 +258,21 @@ Class productos {
 	}
 
     #   ---------------------------------------------------------------------------------------------
-    #   Busca los propductos asociados a una orden para editar dicha orden en entradasEdit.php
+    #   Busca los propductos asociados a una ORDEN para editar dicha orden en entradasEdit.php
     #   ---------------------------------------------------------------------------------------------
     public static function ctlBuscaProdsJSON($orden){
         $productos = mdlProductos::mdlListProductosJSON($orden);
         return $productos;
     }
+
+    #   ---------------------------------------------------------------------------------------------
+    #   Busca los propductos asociados a una PEDIDO para editar dicha orden en salidasEdit.php
+    #   ---------------------------------------------------------------------------------------------
+    public static function ctlBuscaProdsSalidaJSON($orden){
+        $productos = mdlProductos::mdlListProductosSalidaJSON($orden);
+        return $productos;
+    }
+
 
 }//Class
 

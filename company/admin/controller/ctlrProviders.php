@@ -35,7 +35,7 @@ Class providers {
                         confirmButtonText: 'Ok'
                       }).then((result) => {
                         if (result.isConfirmed) {
-                            window.location='index.php?page=clientList'
+                            window.location='index.php?page=proveedorList'
                         }
                       })
                       </script>";
@@ -50,7 +50,7 @@ Class providers {
                     confirmButtonText: 'Ok'
                   }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location='index.php?page=clientList'
+                        window.location='index.php?page=proveedorList'
                     }
                   })
                   </script>";

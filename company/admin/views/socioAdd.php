@@ -53,8 +53,8 @@
                         <div class="form-group">
                             <label class="form-label">Tipo Socio</label>
                             <select class="form-control custom-select select2" name="tipoSocio" >
-                                <option value="1">Socio</option>
-                                <option value="2">Visitante</option>
+                                <option value="1">Cliente</option>
+                                <option value="2">Mayorista</option>
                                 <option value="3">Otro</option>
                                 
                             </select>

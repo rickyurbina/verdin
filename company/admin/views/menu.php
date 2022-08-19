@@ -36,12 +36,33 @@
 							</a>
 							<ul class="slide-menu">
 								<li><a class="slide-item 
-									<?php if ($pagina == 'userAdd') 
+									<?php if ($pagina == 'entradas') 
 											echo 'active'; ?>" href="index.php?page=entradas">Registrar</a>
 								</li>
 								<li><a class="slide-item 
-									<?php if ($pagina == 'userList') 
+									<?php if ($pagina == 'entradasList') 
 											echo 'active'; ?>" href="index.php?page=entradasList">Lista</a>
+								</li>
+
+							</ul>
+						</li>
+
+						<li class="slide <?php if ($pagina == 'salidas' || $pagina == 'salidasList' ) echo 'is-expanded'; ?>">
+							<a class="side-menu__item 
+								<?php if ($pagina == 'salidas' || $pagina == 'salidasList' ) 
+										echo 'active'; ?>" data-toggle="slide" href="#">
+										<i class="side-menu__icon icon-logout"></i>
+										<span class="side-menu__label">salidas</span>
+										<i class="angle fa fa-angle-right"></i>
+							</a>
+							<ul class="slide-menu">
+								<li><a class="slide-item 
+									<?php if ($pagina == 'salidas') 
+											echo 'active'; ?>" href="index.php?page=salidas">Registrar</a>
+								</li>
+								<li><a class="slide-item 
+									<?php if ($pagina == 'salidasList') 
+											echo 'active'; ?>" href="index.php?page=salidasList">Lista</a>
 								</li>
 
 							</ul>

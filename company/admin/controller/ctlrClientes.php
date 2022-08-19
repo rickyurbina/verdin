@@ -147,6 +147,33 @@ Class clientes {
 		}
 	}
 
+    #-------------------------------------
+	#Lista todas los clientes para un select
+	#------------------------------------
+	public static function ctlListClientes(){
+
+		$respuesta = mdlClientes::mdlListClientes("clientes");
+
+		foreach ($respuesta as $row => $item){
+			echo  '<option value="'.$item["idCliente"].'">'.$item["nombres"].' '.$item["apellidos"].'</option>';
+		}
+	}
+    #-------------------------------------------------------------------------
+	# Lista clientes en un select para el registro de salidas, recibe un valor
+    # si coincide con la marca retorna selected para la edicion de la entrada
+	#------------------------------------------------------------------------
+	public static function ctlListClientesSelected($valor){
+
+		$respuesta = mdlClientes::mdlListClientes("clientes");
+
+		foreach ($respuesta as $row => $item){
+            if ($item["idCliente"] == $valor ) 
+                echo  '<option value="'.$item["idCliente"].'" selected>'.$item["nombres"].' '.$item["apellidos"].' </option>';    
+            else 
+                echo  '<option value="'.$item["idCliente"].'">'.$item["nombres"].' '.$item["apellidos"].'</option>';
+		}
+	}
+
 
     	#BORRAR USUARIO
 	#------------------------------------

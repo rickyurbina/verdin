@@ -131,7 +131,7 @@ class mdlProductos {
 
 	}
 	#	----------------------------------------------------------------------------------------
-	#	Busca los productos asociados a una orden y los regresa como un JSON
+	#	Busca los productos asociados a una ORDEN y los regresa como un JSON
 	# 	----------------------------------------------------------------------------------------
 
 	public static function mdlListProductosJSON($orden){
@@ -140,6 +140,24 @@ class mdlProductos {
 												FROM entradas AS e
 												INNER JOIN productos AS p
 												ON e.idProducto = p.idProducto WHERE orden = $orden");
+		$stmt->execute();
+        while($row=$stmt->fetchAll(PDO::FETCH_ASSOC)){
+			$prodsArray = $row;
+	  }
+        return json_encode($prodsArray);
+	}
+
+
+	#	----------------------------------------------------------------------------------------
+	#	Busca los productos asociados a un PEDIDO y los regresa como un JSON
+	# 	----------------------------------------------------------------------------------------
+
+	public static function mdlListProductosSalidaJSON($orden){
+		$prodsArray = array();
+		$stmt = Conexion::conectar()->prepare("SELECT s.*, p.name as producto
+												FROM salidas AS s
+												INNER JOIN productos AS p
+												ON s.idProducto = p.idProducto WHERE pedido = $orden");
 		$stmt->execute();
         while($row=$stmt->fetchAll(PDO::FETCH_ASSOC)){
 			$prodsArray = $row;

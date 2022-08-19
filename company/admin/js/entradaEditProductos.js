@@ -78,7 +78,8 @@ function agregaProducto(e){
 }
 
 function mostrarError(error){
-    const mensajeError = document.createElement('p');
+    const mensajeError = document.createElement('div');
+    mensajeError.classList.add('alert','alert-secondary')
     mensajeError.textContent = error;
     //mensajeError.classList.add('');
 

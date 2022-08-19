@@ -69,6 +69,18 @@ class mdlClientes {
 
 	}
 
+    #----------------------------------------------------------------
+	#  Lista el nombre de los clientes registrados para un select
+	#----------------------------------------------------------------
+
+	public static function mdlListClientes($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT idCliente, nombres, apellidos FROM $tabla ORDER BY nombres ASC");
+		$stmt->execute();
+		return $stmt->fetchAll();
+
+	}
+
 
     	#BUSCA UN CLIENTE
 	#-------------------------------------

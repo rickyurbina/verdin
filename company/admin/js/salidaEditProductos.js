@@ -6,12 +6,14 @@ const proveedor = document.querySelector("#proveedor");
 const concepto = document.querySelector("#concepto");
 const fechaMovimiento = document.querySelector("#fechaMovimiento");
 const idProducto = document.querySelector("#idProducto");
+const productosBD = document.querySelector("#productosBD");
+console.log(productosBD.value);
 
 
 const lote = document.querySelector("#lote");
 const cantidad = document.querySelector("#cantidad");
 const medida = document.querySelector("#medida");
-const costo = document.querySelector("#costo");
+const precio = document.querySelector("#precio");
 
 const formulario = document.forms['entradas'];
 
@@ -29,9 +31,13 @@ function eventListeners(){
     // cuando el documento esta listo despues de recargar
     // si el localStorege no se encuentra entonces inicializa con un arreglo vacio
     document.addEventListener('DOMContentLoaded', ()=>{
-        //productos = JSON.parse( localStorage.getItem('productos')) || [];
+
+
+        localStorage.setItem('productos', productosBD.value);
+
+        productos = JSON.parse( localStorage.getItem('productos')) || [];
         // console.log(features);
-        //crearHTML();
+        crearHTML();
     });
 }
 
@@ -44,7 +50,7 @@ function agregaProducto(e){
     const nomProducto = idProducto.options[idProducto.selectedIndex].text;
     const nomMedida = medida.options[medida.selectedIndex].text;
     const nomCantidad = cantidad.value;
-    console.log(idProducto.value, idProd, nomProducto, lote.value, cantidad.value, medida.value, costo.value);
+    console.log(idProducto.value, idProd, nomProducto, lote.value, cantidad.value, medida.value, precio.value);
 
     if (lote.value === '' || nomProducto === ''){
         mostrarError('Complete los valores');
@@ -58,7 +64,7 @@ function agregaProducto(e){
         lote: lote.value,
         cantidad: nomCantidad,
         medida: nomMedida,
-        costo: costo.value
+        precio: precio.value
     }
 
     //Añadir al arreglo de productos
@@ -75,7 +81,6 @@ function mostrarError(error){
     const mensajeError = document.createElement('div');
     mensajeError.classList.add('alert','alert-secondary')
     mensajeError.textContent = error;
-
     //mensajeError.classList.add('');
 
     // Insertar el contenido
@@ -102,7 +107,7 @@ function crearHTML(nomProducto, nomMedida, nomCantidad){
             let celdaProducto = document.createElement("td");
             let celdaLote = document.createElement("td");
             let celdaCantidad = document.createElement("td");
-            let celdaCosto = document.createElement("td");
+            let celdaPrecio = document.createElement("td");
             let celdaBtnBorrar = document.createElement("td");
             celdaBtnBorrar.classList.add('text-center');
             
@@ -125,17 +130,17 @@ function crearHTML(nomProducto, nomMedida, nomCantidad){
             let txtProducto = document.createTextNode(prod.producto);            
             let txtLote = document.createTextNode(prod.lote);
             let txtPeso = document.createTextNode( prod.cantidad+ " " + prod.medida);
-            let txtCosto = document.createTextNode(prod.lote);
+            let txtPrecio = document.createTextNode(prod.precio);
 
             celdaProducto.appendChild(txtProducto);
             celdaLote.appendChild(txtLote);
             celdaCantidad.appendChild(txtPeso);
-            celdaCosto.appendChild(txtCosto);
+            celdaPrecio.appendChild(txtPrecio);
 
             hilera.appendChild(celdaProducto);
             hilera.appendChild(celdaLote);
             hilera.appendChild(celdaCantidad);
-            hilera.appendChild(celdaCosto);
+            hilera.appendChild(celdaPrecio);
             hilera.appendChild(celdaBtnBorrar);
 
             productsTable.appendChild(hilera);
