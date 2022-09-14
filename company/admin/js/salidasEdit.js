@@ -1,12 +1,24 @@
-//Registro de Pedidos de productos
+//Edicion de Pedidos de productos 
 const productsTable = document.querySelector("#productsTable");
 const listaPedido = document.querySelector("#listaPedido");
 const totalLabel = document.querySelector("#totalPedido");
+const productosDelPedido = document.querySelector("#pedidoBD");
 const totalPedidoBD = document.querySelector("#totalPedidoBD");
 
 let listaProds = [];
 let pedido = [];
-let totalPedido = 0;
+let totalPedido = parseFloat(totalPedidoBD.value);
+
+// al terminar de cargar el documento creo el Storage y Cargo el pedido en la tabla
+document.addEventListener('DOMContentLoaded', ()=>{
+
+  localStorage.setItem('pedido', productosDelPedido.value);
+  totalLabel.innerHTML = `$ ${totalPedidoBD.value}`;
+
+  pedido = JSON.parse( localStorage.getItem('pedido')) || [];
+  // console.log(features);
+  creaListaPedido();
+});
 
 function buscaJS(name) {
   if( name != "" ){
@@ -41,6 +53,7 @@ function viewSearchResult(data){
         id: Date.now()+i,
         idProducto: data[1]["idProducto"],
         nombre: data[i]["name"],
+        producto: data[i]["name"],
         lote: data[i]["lote"],
         disponible: data[i]["disponible"],
         precio: data[i]["dayPrice"],
@@ -90,7 +103,7 @@ function creaOpciones(){
 
 
       btnColumn.appendChild(btnAgrearAPedido);
-
+      console.log(ft);
       renglon.innerHTML = `
         <td>${ft.nombre}</td>
         <td>${ft.lote}</td>
@@ -123,7 +136,7 @@ function agregarProductoLista(producto, nuevaCantidad){
 
   producto.cantidad = nuevaCantidad;
   pedido = [...pedido, producto];
-  // console.log(pedido);
+  console.log(pedido);
   creaListaPedido(); 
 }
 
@@ -150,7 +163,7 @@ function creaListaPedido(){
       btnColumn.appendChild(btnAgrearAPedido);
 
       renglon.innerHTML = `
-        <td>${prod.nombre}</td>
+        <td>${prod.producto}</td>
         <td>${prod.lote}</td>
         <td id="precio-${prod.id}">${prod.precio}</td>
         <td id="cant-${prod.id}">${prod.cantidad}</td>
@@ -178,7 +191,7 @@ function limpiarTablaPedidos(){
 function eliminarProductoPedido(id){
   const precioEliminar = document.querySelector("#precio-"+id).textContent;
   const cantEliminar =   document.querySelector("#cant-"+id).textContent;
-  totalPedido = totalPedido - (parseInt(precioEliminar)* parseInt(cantEliminar));
+  totalPedido = totalPedido - (parseFloat(precioEliminar)* parseFloat(cantEliminar));
 
   //Calcular y mostrar el total del pedido 
   // totalPedido = totalPedido - (precioEliminar * cantEliminar);

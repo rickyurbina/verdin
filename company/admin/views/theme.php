@@ -130,6 +130,7 @@ setlocale(LC_ALL,"es_ES");
 										$pagina == "salidas" || 
 										$pagina == "salidasAdd" || 
 										$pagina == "salidasList" || 
+										$pagina == "salidasEdita" ||
 										$pagina == "salidasEdit" || 
 										$pagina == "salidaDel" || 
 										$pagina == "entradas" || 
@@ -369,12 +370,13 @@ setlocale(LC_ALL,"es_ES");
 			if ($pagina == "productEdit") echo '<script src="js/appEdit.js"></script>';
 			if ($pagina == "entradas") echo '<script src="js/entradaProductos.js"></script>';
 			if ($pagina == "entradasEdit") echo '<script src="js/entradaEditProductos.js"></script>';
-			if ($pagina == "salidas") {
-				echo '<script src="js/salidaProductos.js"></script>';
-				echo '<script src="js/salidaCalculaProductos.js"></script>';
-			}
+			// if ($pagina == "salidas") {
+			// 	echo '<script src="js/salidaProductos.js"></script>';
+			// 	echo '<script src="js/salidaCalculaProductos.js"></script>';
+			// }
 			if ($pagina == "salidasEdit") echo '<script src="js/salidaEditProductos.js"></script>';
-			if ($pagina == "search") echo '<script src="js/search.js"></script>';
+			if ($pagina == "salidasEdita") echo '<script src="js/salidasEdit.js"></script>';
+			if ($pagina == "salidas") echo '<script src="js/search.js"></script>';
 		?>
 
 	</body>

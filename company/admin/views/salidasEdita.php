@@ -1,9 +1,8 @@
-<!-- <div class="page-header">
-    <h4 class="page-title">Captura de Pedidos</h4>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Inicio</li>
-    </ol>
-</div> -->
+<?php
+    $pedido = $_GET["idSalida"];
+    $busca = mdlSalidas::mdlBuscaSalida($pedido, "salidasEnc");
+    $productosJSON = productos::ctlBuscaProdsSalidaJSON($pedido);
+?>
 <div><p></p></div>
 
 
@@ -14,40 +13,51 @@
             <form method="POST">
                 <div class="card-header">
                     <h3 class="card-title">Información del Cliente</h3>
-                    <div class="card-options"><button type="submit" class="btn btn-sm btn-blue" name="regPedido" href="busca.php">Guardad Pedido</button> </div>
+                    <div class="card-options"><button type="submit" class="btn btn-warning" name="updtPedido">Actualizar Pedido</button> </div>
                 </div>
                 <div class="card-body">
                 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-label"># Pedido</label>
-                                <input type="text" class="form-control" name="pedidoNum" id="pedidoNum" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Cliente</label>
-                                <select class="form-control" name="idCliente" id="idCliente">
-                                    <?php $clientes = new clientes(); $clientes -> ctlListClientes();?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <label class="form-label">Concepto</label>
-                                <select class="form-control custom-select select2" name="concepto" id="concepto">
-                                    <option value="venta">Venta</option>
-                                    <option value="ajuste">Ajuste</option>
-                                    <option value="saldo">Saldo Inicial</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Fecha</label>
-                                <input class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="text" name="fechaMovimiento" id="fechaMovimiento">
-                                <input type="text" class="form-control" name="pedidoBD" id="pedidoBD" hidden>
-                                <input type="text" class="form-control" name="totalPedidoBD" id="totalPedidoBD" hidden>
-                            </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="form-label text-center"># pedido</label>
+                            <h3 class="text-center"><strong> <?php echo $busca['pedido']; ?></strong></h3>
+                            <input type="text" class="form-control" name="pedidoNum" id="pedidoNum" value="<?php echo $busca["pedido"] ?>" hidden>
                         </div>
                     </div>
+                    <div class="col-sm-4 col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">Proveedor</label>
+                            <select class="form-control" name="idCliente">
+                                <?php $proveedores = new clientes(); $proveedores -> ctlListClientesSelected($busca['idCliente']);?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Concepto</label>
+                            <select class="form-control custom-select select2" name="concepto" id="concepto">
+                                <?php
+                                    if($busca['concepto'] == 'salida') echo '<option value="salida" selected>Salida</option>'; else echo '<option value="salida">Salida</option>';  
+                                    if($busca['concepto'] == 'ajuste') echo '<option value="ajuste" selected>Ajuste</option>'; else echo '<option value="ajuste">Ajuste</option>';  
+                                    if($busca['concepto'] == 'saldo inicial') echo '<option value="saldo inicial" selected>saldo inicial</option>'; else echo '<option value="saldo inicial">Saldo Inicial</option>';  
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Fecha</label>
+                            <input class="form-control fc-datepicker" type="text" name="fechaMovimiento" value="<?php echo $busca["fecha"]; ?>" >
+                            <input type="text" class="form-control" name="pedidoBD" id="pedidoBD" value='<?php echo $productosJSON; ?>' >
+                                <input type="text" class="form-control" name="totalPedidoBD" id="totalPedidoBD" value='<?php echo $busca["totalPedido"]; ?>'>
+                        </div>
+                    </div>
+                    <div class="col-sm-9 col-md-9">
+                        
+                    </div>
+
+                </div>
             </form>
             <?php
                 $registro = new Salidas();
@@ -114,7 +124,10 @@
         </div> 
     </div>
 
-
+    <?php
+        $registro = new Salidas();
+        $registro -> ctlEditaSalida();
+    ?>
 
     <!-- <div class="row">
     <div class="col-xl-6 col-lg-6 col-md-8"> 

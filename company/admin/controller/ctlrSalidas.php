@@ -84,7 +84,7 @@ Class Salidas {
     public static function ctlEditaSalida(){
       if(isset($_POST["updtPedido"])){
         
-        $prods = json_decode($_POST["productosBD"], true);
+        $prods = json_decode($_POST["pedidoBD"], true);
         
         $original_date = $_POST["fechaMovimiento"];
         $timestamp = strtotime($original_date);
@@ -93,6 +93,7 @@ Class Salidas {
         $datos_pedido = array ("idCliente" => $_POST["idCliente"],
                                 "pedido" => $_POST["pedidoNum"],
                                 "concepto" => $_POST["concepto"],
+                                "totalPedidoBD" => $_POST["totalPedidoBD"],
                                 "fechaMovimiento" => $fechaMovimiento);
         
         $ingresa = mdlSalidas::mdlActualizaPedido($datos_pedido);

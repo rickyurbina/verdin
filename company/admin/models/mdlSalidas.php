@@ -62,10 +62,11 @@ class mdlSalidas {
 
     public static function mdlActualizaPedido($datos_pedido){
 
-        $stmt = Conexion::conectar()->prepare("UPDATE `salidasEnc` SET `idCliente` = :idCliente,  `fecha` = :fechaMovimiento WHERE `pedido` = :pedido;");
+        $stmt = Conexion::conectar()->prepare("UPDATE `salidasEnc` SET `idCliente` = :idCliente,  `fecha` = :fechaMovimiento, `totalPedido` = :totalPedidoBD  WHERE `pedido` = :pedido;");
 
          $stmt -> bindParam(":pedido", $datos_pedido["pedido"], PDO::PARAM_INT);         
          $stmt -> bindParam(":idCliente", $datos_pedido["idCliente"], PDO::PARAM_INT);
+         $stmt -> bindParam(":totalPedidoBD", $datos_pedido["totalPedidoBD"], PDO::PARAM_INT);
         //  $stmt -> bindParam(":concepto", $datos_pedido["concepto"], PDO::PARAM_STR);
          $stmt -> bindParam(":fechaMovimiento", $datos_pedido["fechaMovimiento"], PDO::PARAM_STR);
         //  $stmt2 = Conexion::conectar()->prepare("UPDATE productos SET disponibilidad = (SELECT SUM(`cantidad`) FROM `entradas` WHERE `idProducto`= :idProducto) WHERE idProducto = :idProducto");
