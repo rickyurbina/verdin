@@ -374,8 +374,8 @@ setlocale(LC_ALL,"es_ES");
 			// 	echo '<script src="js/salidaProductos.js"></script>';
 			// 	echo '<script src="js/salidaCalculaProductos.js"></script>';
 			// }
-			if ($pagina == "salidasEdit") echo '<script src="js/salidaEditProductos.js"></script>';
-			if ($pagina == "salidasEdita") echo '<script src="js/salidasEdit.js"></script>';
+			// if ($pagina == "salidasEdit") echo '<script src="js/salidaEditProductos.js"></script>';
+			if ($pagina == "salidasEdit") echo '<script src="js/salidasEdit.js"></script>';
 			if ($pagina == "salidas") echo '<script src="js/search.js"></script>';
 		?>
 
