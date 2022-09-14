@@ -166,6 +166,22 @@ class mdlProductos {
 	}
 
 
+	public function mdlLiveSearch($nombres){
+
+		//$stmt = Conexion::conectar()->prepare("SELECT * FROM productos WHERE name LIKE :nombres OR claveProducto LIKE :nombres");
+		$stmt = Conexion::conectar()->prepare("SELECT e.*, p.name, p.dayPrice, p.weekPrice, p.monthPrice as producto
+												FROM entradas AS e
+												INNER JOIN productos AS p
+												ON e.idProducto = p.idProducto WHERE (name LIKE :nombres OR claveProducto LIKE :nombres) 
+												AND (e.disponible > 0)");
+		
+		$stmt -> execute(["nombres" => "%" . $nombres . "%"]);
+
+		return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+	}
+
+
 }// Class
 
 ?>

@@ -116,7 +116,7 @@
     <div class="col-lg-3 col-sm-12 ">
         <div class="card m-b-20">
                 <div class="card-header">
-                    <h3 class="card-title">Total $<span id="totalOrden">00</span></h3>
+                    <h3 class="card-title" id="totalOrden">Total $<span id="totalOrden">00</span></h3>
                 </div>
         </div>
     </div>
@@ -124,7 +124,7 @@
     <div class="col-sm-12 ">
 
         <div class="form-group">
-            <input type="text" class="form-control" name="productosBD" id="productosBD" hidden>
+            <input type="text" class="form-control" name="productosBD" id="productosBD">
         </div>
     </div>
     <!-- end col -->

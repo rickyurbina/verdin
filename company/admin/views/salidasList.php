@@ -19,6 +19,7 @@
 						<td>Orden</td>
 						<td>Cliente</td>
 						<td>Fecha</td>
+						<td>Monto</td>
 						<td>opciones</td>
 					</thead>
 					<tbody>
@@ -34,6 +35,7 @@
 							<td>Orden</td>
 							<td>Cliente</td>
 							<td>Fecha</td>
+							<td>Monto</td>
 							<td>opciones</td>
 						</tr>
 					</tfoot>

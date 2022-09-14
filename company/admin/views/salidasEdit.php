@@ -121,7 +121,7 @@
     </div>
     <div class="col-sm-12 ">
         <div class="form-group">
-            <input type="text" class="form-control" name="productosBD" id="productosBD" value='<?php echo $productosJSON; ?>' >
+            <input type="text" class="form-control" name="productosBD" id="productosBD" value='<?php echo $productosJSON; ?>' hidden >
         </div>
     </div>
     <!-- end col -->

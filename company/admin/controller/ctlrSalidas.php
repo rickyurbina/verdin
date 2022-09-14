@@ -4,7 +4,7 @@ Class Salidas {
     public static function ctlRegistraPedido(){
       if(isset($_POST["regPedido"])){
         
-        $prods = json_decode($_POST["productosBD"], true);
+        $prods = json_decode($_POST["pedidoBD"], true);
         
         $original_date = $_POST["fechaMovimiento"];
         $timestamp = strtotime($original_date);
@@ -13,6 +13,7 @@ Class Salidas {
         $datos_pedido = array ("idCliente" => $_POST["idCliente"],
                                 "pedido" => $_POST["pedidoNum"],
                                 "concepto" => $_POST["concepto"],
+                                "totalPedido" => $_POST["totalPedidoBD"],
                                 "fechaMovimiento" => $fechaMovimiento);
         
         $ingresa = mdlSalidas::mdlRegistraPedido($datos_pedido);
@@ -232,6 +233,7 @@ Class Salidas {
                   <td>'.$item["pedido"].'</td>
                   <td>'.$item["nombres"].'</td>
                   <td>'.$registro.'</td>
+                  <td>'.$item["totalPedido"].'</td>
                   <td>
                       <div class="item-action dropdown">
                           <a href="javascript:void(0)" data-toggle="dropdown" class="icon" aria-expanded="false"><i class="fe fe-more-vertical fs-20 text-dark"></i></a>

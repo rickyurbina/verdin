@@ -52,10 +52,7 @@ function agregarFeat(e){
     crearHTML();
     // reiniciar las cajas de texto 
     featName.value = "";
-    featValue.value = "";
-    
-
-    
+    featValue.value = "";    
 }
 
 function mostrarError(error){
@@ -78,6 +75,7 @@ function mostrarError(error){
 function crearHTML(){
 
     limpiarHTML();
+    //console.log(features);
 
     if (features.length > 0){
         features.forEach( ft =>{
@@ -137,4 +135,3 @@ function borrarFeature(id){
     features = features.filter(feature => feature.id !== id);
     crearHTML();
 }
-

@@ -169,7 +169,8 @@ setlocale(LC_ALL,"es_ES");
 										$pagina == "productEdit" || 
 										$pagina == "productList" || 
 										$pagina == "productStatus" ||
-										$pagina == "logOut" ){
+										$pagina == "logOut" ||
+										$pagina == "search" ){
 												include "views/".$pagina.".php";
 								}
 						?>
@@ -250,7 +251,6 @@ setlocale(LC_ALL,"es_ES");
 		<script src="assets/js/datatable.js"></script>
 
 		<!-- Custom JS -->
-		<script src="assets/js/app.js"></script>
 		<script src="assets/js/moment.min.js"></script>
 
 		<!-- ECharts Plugin -->
@@ -369,8 +369,12 @@ setlocale(LC_ALL,"es_ES");
 			if ($pagina == "productEdit") echo '<script src="js/appEdit.js"></script>';
 			if ($pagina == "entradas") echo '<script src="js/entradaProductos.js"></script>';
 			if ($pagina == "entradasEdit") echo '<script src="js/entradaEditProductos.js"></script>';
-			if ($pagina == "salidas") echo '<script src="js/salidaProductos.js"></script>';
+			if ($pagina == "salidas") {
+				echo '<script src="js/salidaProductos.js"></script>';
+				echo '<script src="js/salidaCalculaProductos.js"></script>';
+			}
 			if ($pagina == "salidasEdit") echo '<script src="js/salidaEditProductos.js"></script>';
+			if ($pagina == "search") echo '<script src="js/search.js"></script>';
 		?>
 
 	</body>
