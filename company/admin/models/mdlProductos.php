@@ -172,7 +172,7 @@ class mdlProductos {
 		$stmt = Conexion::conectar()->prepare("SELECT e.*, p.name, p.dayPrice, p.weekPrice, p.monthPrice as producto
 												FROM entradas AS e
 												INNER JOIN productos AS p
-												ON e.idProducto = p.idProducto WHERE (name LIKE :nombres OR claveProducto LIKE :nombres) 
+												ON e.idProducto = p.idProducto WHERE (p.name LIKE :nombres OR p.idProducto LIKE :nombres) 
 												AND (e.disponible > 0)");
 		
 		$stmt -> execute(["nombres" => "%" . $nombres . "%"]);

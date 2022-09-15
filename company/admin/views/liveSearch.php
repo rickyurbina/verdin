@@ -1,5 +1,4 @@
 <?php
-
 $name = $_POST['name'];
 require_once("../models/mdlProductos.php");
 $b = new mdlProductos();
