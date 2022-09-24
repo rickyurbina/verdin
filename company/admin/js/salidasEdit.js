@@ -51,7 +51,7 @@ function viewSearchResult(data){
   for (let i = 0; i < lista; i++){
       const productoObj ={
         id: Date.now()+i,
-        idProducto: data[1]["idProducto"],
+        idProducto: data[i]["idProducto"],
         nombre: data[i]["name"],
         producto: data[i]["name"],
         lote: data[i]["lote"],

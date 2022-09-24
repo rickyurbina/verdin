@@ -28,10 +28,20 @@ function fetchSearchData(name){
     .catch(e => console.error('Error: ' + e))
 }
 
+function liveUpdate(id, cantidad){
+  productoUpdate = pedido.filter(prod => prod.id === id);
+
+  fetch('views/liveUpdate.php', { // ubicacion del archivo que hace la consulta segun el nombre
+      method: "POST",            // que le enviamos por metodo POST
+      body: new URLSearchParams('productoUpdate=' + productoUpdate)
+  })
+  .then(res => res)
+  .then(res => viewSearchResult(res))
+  .catch(e => console.error('Error: ' + e))
+}
 
 
 function viewSearchResult(data){
-  //console.log(data);
    const lista = Object.entries(data).length;
 
   limpiarTablaResultados();
@@ -39,7 +49,7 @@ function viewSearchResult(data){
   for (let i = 0; i < lista; i++){
       const productoObj ={
         id: Date.now()+i,
-        idProducto: data[1]["idProducto"],
+        idProducto: data[i]["idProducto"],
         nombre: data[i]["name"],
         lote: data[i]["lote"],
         disponible: data[i]["disponible"],
@@ -57,6 +67,7 @@ function viewSearchResult(data){
 }
 
 function creaOpciones(){
+  //console.log(listaProds);
   if (listaProds.length > 0){
     listaProds.forEach( ft =>{
       ///   crea los elementos necesarios para la tabla de resultados del LiveSearch
@@ -86,6 +97,7 @@ function creaOpciones(){
       btnAgrearAPedido.onclick = () => {
         let cantidad = document.querySelector("#cant"+ft.id).value;
         agregarProductoLista(ft, cantidad); 
+        liveUpdate(ft.id, cantidad);
       }
 
 
@@ -123,7 +135,6 @@ function agregarProductoLista(producto, nuevaCantidad){
 
   producto.cantidad = nuevaCantidad;
   pedido = [...pedido, producto];
-  // console.log(pedido);
   creaListaPedido(); 
 }
 
@@ -188,7 +199,6 @@ function eliminarProductoPedido(id){
 
   pedido = pedido.filter(prod => prod.id !== id);
   creaListaPedido();
-  // console.log(pedido);
 }
 
 

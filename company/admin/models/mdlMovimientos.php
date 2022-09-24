@@ -84,17 +84,18 @@ class mdlMovimientos {
 
     public static function mdlRegistraProdsOrden($datos_prods){
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO `entradas` (`id`,`idProducto`, `lote`, `cantidad`, `medida`, `costo`, `orden`) 
-        VALUES (NULL, :idProducto, :lote, :cantidad, :medida, :costo, :orden);");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO `entradas` (`id`,`idProducto`, `lote`, `cantidad`, `disponible`, `medida`, `costo`, `orden`) 
+        VALUES (NULL, :idProducto, :lote, :cantidad, :disponible, :medida, :costo, :orden);");
         
          $stmt -> bindParam(":idProducto", $datos_prods["idProducto"], PDO::PARAM_INT);
          $stmt -> bindParam(":lote", $datos_prods["lote"], PDO::PARAM_STR);
          $stmt -> bindParam(":cantidad", $datos_prods["cantidad"], PDO::PARAM_INT);
+         $stmt -> bindParam(":disponible", $datos_prods["disponible"], PDO::PARAM_INT);
          $stmt -> bindParam(":medida", $datos_prods["medida"], PDO::PARAM_STR);
          $stmt -> bindParam(":costo", $datos_prods["costo"], PDO::PARAM_STR);
          $stmt -> bindParam(":orden", $datos_prods["orden"], PDO::PARAM_INT);
 
-         $stmt2 = Conexion::conectar()->prepare("UPDATE productos SET disponibilidad = (SELECT SUM(`cantidad`) FROM `entradas` WHERE `idProducto`= :idProducto) WHERE idProducto = :idProducto");
+         $stmt2 = Conexion::conectar()->prepare("UPDATE productos SET disponibilidad = (SELECT SUM(`disponible`) FROM `entradas` WHERE `idProducto`= :idProducto) WHERE idProducto = :idProducto");
          $stmt2 -> bindParam(":idProducto", $datos_prods["idProducto"], PDO::PARAM_INT);
          
         if ($stmt -> execute()){
@@ -158,6 +159,24 @@ class mdlMovimientos {
 
 		//$stmt->close();
 	}
+
+    # ------------------------------------
+    # Busca el ultimo id registrado en la tabla de  Entradas o Salidas para la numeracion 
+    # de las ordenes de entrada y salida
+	#-------------------------------------
+    
+	public static function mdlSiguienteRegistro($tabla, $campo){
+
+        $stmt = Conexion::conectar()->prepare("SELECT MAX($campo) as siguiente FROM $tabla");
+
+        $stmt->execute();
+
+       #fetchAll(): Obtiene todas las filas de un conjunto de resultados asociado al objeto PDOStatement.
+       return $stmt->fetch();
+
+       //$stmt->close();
+
+   }
 
     # ------------------------------------
     	#Lista Entradas

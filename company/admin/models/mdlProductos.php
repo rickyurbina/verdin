@@ -9,18 +9,20 @@ class mdlProductos {
     
     public static function mdlRegistraProducto($datos){
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO `productos`(`idProducto`, `name`, `brand`, `eqType`, `dayPrice`, `weekPrice`, 
-        `monthPrice`, `features`, `image`) 
-        VALUES (NULL, :nombre, :brand, :eqType, :dayPrice, :weekPrice, :monthPrice, :features, :imagen)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO `productos`(`idProducto`, `claveProducto`, `name`, `brand`, `eqType`, `dayPrice`, `weekPrice`, 
+        `monthPrice`, `features`, `image`, `medida`) 
+        VALUES (NULL, :claveProducto, :nombre, :brand, :eqType, :dayPrice, :weekPrice, :monthPrice, :features, :imagen, :medida)");
     
-         $stmt -> bindParam(":nombre", $datos["name"], PDO::PARAM_STR);
-         $stmt -> bindParam(":brand", $datos["brand"], PDO::PARAM_STR);
-         $stmt -> bindParam(":eqType", $datos["eqType"], PDO::PARAM_STR);
-         $stmt -> bindParam(":dayPrice", $datos["dayPrice"], PDO::PARAM_INT);
-         $stmt -> bindParam(":weekPrice", $datos["weekPrice"], PDO::PARAM_INT);
-         $stmt -> bindParam(":monthPrice", $datos["monthPrice"], PDO::PARAM_INT);
-         $stmt -> bindParam(":features", $datos["features"], PDO::PARAM_STR);
-         $stmt -> bindParam(":imagen", $datos["image"], PDO::PARAM_STR);
+		$stmt -> bindParam(":claveProducto", $datos["claveProducto"], PDO::PARAM_STR);
+		$stmt -> bindParam(":nombre", $datos["name"], PDO::PARAM_STR);
+		$stmt -> bindParam(":brand", $datos["brand"], PDO::PARAM_STR);
+		$stmt -> bindParam(":medida", $datos["medida"], PDO::PARAM_STR);
+		$stmt -> bindParam(":eqType", $datos["eqType"], PDO::PARAM_STR);
+		$stmt -> bindParam(":dayPrice", $datos["dayPrice"], PDO::PARAM_INT);
+		$stmt -> bindParam(":weekPrice", $datos["weekPrice"], PDO::PARAM_INT);
+		$stmt -> bindParam(":monthPrice", $datos["monthPrice"], PDO::PARAM_INT);
+		$stmt -> bindParam(":features", $datos["features"], PDO::PARAM_STR);
+		$stmt -> bindParam(":imagen", $datos["image"], PDO::PARAM_STR);
         
         if ($stmt -> execute()){
             return "ok";
@@ -125,7 +127,7 @@ class mdlProductos {
 
 	public static function mdlListProductos($tabla){
 
-		$stmt = Conexion::conectar()->prepare("SELECT idProducto, name FROM $tabla ORDER BY name ASC");
+		$stmt = Conexion::conectar()->prepare("SELECT idProducto, name  FROM $tabla ORDER BY name ASC");
 		$stmt->execute();
 		return $stmt->fetchAll();
 
@@ -169,15 +171,33 @@ class mdlProductos {
 	public function mdlLiveSearch($nombres){
 
 		//$stmt = Conexion::conectar()->prepare("SELECT * FROM productos WHERE name LIKE :nombres OR claveProducto LIKE :nombres");
-		$stmt = Conexion::conectar()->prepare("SELECT e.*, p.name, p.dayPrice, p.weekPrice, p.monthPrice as producto
+		$stmt = Conexion::conectar()->prepare("SELECT e.*, p.name, p.idProducto, p.dayPrice, p.weekPrice, p.monthPrice 
 												FROM entradas AS e
 												INNER JOIN productos AS p
-												ON e.idProducto = p.idProducto WHERE (p.name LIKE :nombres OR p.idProducto LIKE :nombres) 
+												ON e.idProducto = p.idProducto WHERE (p.name LIKE :nombres OR p.claveProducto LIKE :nombres) 
 												AND (e.disponible > 0)");
 		
 		$stmt -> execute(["nombres" => "%" . $nombres . "%"]);
 
 		return $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+	}
+	
+	public function mdlLiveUpdate($producto){
+
+		//$stmt = Conexion::conectar()->prepare("SELECT * FROM productos WHERE name LIKE :nombres OR claveProducto LIKE :nombres");
+		$stmt = Conexion::conectar()->prepare("UPDATE `entradas` SET `disponible`=`disponible` - :cantidad WHERE `idProducto`= :id AND `lote` = :lote");
+		
+		//$stmt -> execute(["nombres" => "%" . $nombres . "%"]);
+		$stmt -> bindPARAM(":id",$producto["idProducto"], PDO::PARAM_INT);
+        $stmt -> bindPARAM(":cantidad",$producto["cantidad"], PDO::PARAM_INT);
+		$stmt -> bindPARAM(":lote",$producto["lote"], PDO::PARAM_INT);
+
+		if ($stmt->execute()){
+			return "success";
+		} else {
+			return "error";
+		}
 
 	}
 

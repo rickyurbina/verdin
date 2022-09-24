@@ -16,14 +16,21 @@
             </div>
             <div class="card-body">
                 <div class="row">
-
-                <div class="col-sm-12 col-md-12">
+                
+                <div class="col-sm-4 col-md-4">
                     <div class="form-group">
-                        <label class="form-label">Name</label>
+                        <label class="form-label">Clave de Producto</label>
+                        <input type="text" class="form-control" name="claveProducto" placeholder="Product Name" required >
+                    </div>
+                </div>
+
+                <div class="col-sm-8 col-md-8">
+                    <div class="form-group">
+                        <label class="form-label">Nombre</label>
                         <input type="text" class="form-control" name="name" placeholder="Product Name" required >
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-6">
+                <div class="col-sm-5 col-md-5">
                     <div class="form-group">
                         <label class="form-label">Marca</label>
                         <select class="form-control" name="brand">
@@ -32,11 +39,21 @@
                     </div>
                 </div>
 
-                <div class="col-sm-6 col-md-5">
+                <div class="col-sm-4 col-md-4">
                     <div class="form-group">
                         <label class="form-label">Categoria</label>
                         <select class="form-control" name="eqType">
                             <?php $eqTypes = new equipmentType(); $eqTypes -> ctlListEqTypes();?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-md-3">
+                    <div class="form-group">
+                        <label class="form-label">Medida</label>
+                        <select class="form-control custom-select select2" name="medida" id="medida" >
+                            <option value="Kgs">Kgs</option>
+                            <option value="Pzas">Piezas</option>
+                            
                         </select>
                     </div>
                 </div>

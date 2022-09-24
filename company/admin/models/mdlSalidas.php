@@ -97,11 +97,19 @@ class mdlSalidas {
          $stmt -> bindParam(":precio", $datos_prods["precio"], PDO::PARAM_STR);
          $stmt -> bindParam(":pedido", $datos_prods["pedido"], PDO::PARAM_INT);
 
-         $stmt2 = Conexion::conectar()->prepare("UPDATE productos SET disponibilidad = (SELECT SUM(`cantidad`) FROM `entradas` WHERE `idProducto`= :idProducto) WHERE idProducto = :idProducto");
+         //UPDATE entradas SET `disponible` = `disponible` - 25 WHERE `idProducto` = 38 AND `lote` = 1
+         $stmt2 = Conexion::conectar()->prepare("UPDATE entradas SET `disponible` = `disponible` - :cantidad WHERE `idProducto` = :idProducto AND `lote` = :lote");
          $stmt2 -> bindParam(":idProducto", $datos_prods["idProducto"], PDO::PARAM_INT);
+         $stmt2 -> bindParam(":lote", $datos_prods["lote"], PDO::PARAM_STR);
+         $stmt2 -> bindParam(":cantidad", $datos_prods["cantidad"], PDO::PARAM_INT);
+
+
+         $stmt3 = Conexion::conectar()->prepare("UPDATE productos SET disponibilidad = (SELECT SUM(`disponible`) FROM `entradas` WHERE `idProducto`= :idProducto) WHERE idProducto = :idProducto");
+         $stmt3 -> bindParam(":idProducto", $datos_prods["idProducto"], PDO::PARAM_INT);
          
         if ($stmt -> execute()){
             if($stmt2 -> execute())
+                if($stmt3 -> execute())
                 return "ok";
         }
         else {

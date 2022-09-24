@@ -22,6 +22,7 @@ Class Movimientos {
           $datos_prods = array( "idProducto" => $item["idProducto"],
                                 "lote" => $item["lote"],
                                 "cantidad" => $item["cantidad"],
+                                "disponible" => $item["cantidad"],
                                 "medida" => $item["medida"],
                                 "costo" => $item["costo"],
                                 "orden" => $_POST["ordenNum"]);
@@ -213,6 +214,27 @@ Class Movimientos {
             
             
         }
+    }
+
+
+    # Busca el numero de la ultima entrada/salida que esta registrada
+    #------------------------------------------------------------------------------------------------
+    public static function ctrSiguienteRegistro($tabla){
+      if ($tabla == 'salidas') 
+      {
+        $tablaBuscar = 'salidasEnc';
+        $campo = 'id';
+      }
+      elseif ($tabla == 'entradas') 
+      {
+        $tablaBuscar = 'entradasEnc';
+        $campo = 'orden';
+      }
+      
+      $ultimo = mdlMovimientos::mdlSiguienteRegistro($tablaBuscar, $campo);
+      
+      return $ultimo["siguiente"]+ 1;
+
     }
 
 

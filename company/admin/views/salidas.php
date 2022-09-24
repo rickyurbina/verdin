@@ -1,9 +1,9 @@
-
+<?php
+    $orden = new Movimientos(); 
+    $siguiente = $orden -> ctrSiguienteRegistro('salidas'); 
+?>
 <div><p></p></div>
-
-
-    <div class="row">
-        
+      <div class="row">    
         <div class="col-xl-6 col-lg-6 col-md-12">
             <div class="card m-b-20">
             <form method="POST">
@@ -14,11 +14,17 @@
                 <div class="card-body">
                 
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3 text-center">
                             <div class="form-group">
                                 <label class="form-label"># Pedido</label>
-                                <input type="text" class="form-control" name="pedidoNum" id="pedidoNum" required>
+                                <!-- <input type="text" class="form-control" name="pedidoNum" id="pedidoNum" required> -->
+                                
+                                <h3 class="text-center"><strong> <?php echo $siguiente; ?></strong></h3>
+                                <input type="text" class="form-control" name="pedidoNum" id="pedidoNum" value="<?php echo $siguiente; ?>" hidden >
                             </div>
+                        </div>
+                        <div class="col-md-9">
+                            
                             <div class="form-group">
                                 <label class="form-label">Cliente</label>
                                 <select class="form-control" name="idCliente" id="idCliente">
@@ -26,6 +32,8 @@
                                 </select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-sm-6 col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Concepto</label>
@@ -35,6 +43,8 @@
                                     <option value="saldo">Saldo Inicial</option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6">
                             <div class="form-group">
                                 <label class="form-label">Fecha</label>
                                 <input class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="text" name="fechaMovimiento" id="fechaMovimiento">
@@ -42,7 +52,8 @@
                                 <input type="text" class="form-control" name="totalPedidoBD" id="totalPedidoBD" hidden>
                             </div>
                         </div>
-                    </div>
+                        
+                     </div>  <!-- row -->
             </form>
             <?php
                 $registro = new Salidas();
@@ -56,7 +67,7 @@
                     <h3 class="card-title">Búsquedas de Productos</h3>
                 </div> -->
                 <div class="card-body">
-                    <form action="busca.php" method="POST">
+                    <form method="POST">
                         <div class="form-group">
                             <input type="text" class="form-control" id="searchBox" oninput = "buscaJS(this.value)" placeholder="Busque un producto aqui">
                         </div>

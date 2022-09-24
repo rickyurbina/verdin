@@ -1,3 +1,7 @@
+<?php
+    $orden = new Movimientos(); 
+    $siguiente = $orden -> ctrSiguienteRegistro('entradas'); 
+?>
 <div class="page-header">
     <h4 class="page-title">Registro de Productos</h4>
     <ol class="breadcrumb">
@@ -16,8 +20,11 @@
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label class="form-label"># Orden</label>
-                            <input type="text" class="form-control" name="ordenNum" id="ordenNum">
+                            <label class="form-label"># Orden</label> 
+                            
+                            <h3 class="text-center"><strong> <?php echo $siguiente; ?></strong></h3>
+                            <input type="text" class="form-control" name="ordenNum" id="ordenNum" value="<?php echo $siguiente; ?>" hidden>
+
                         </div>
                     </div>
                     <div class="col-sm-4 col-md-4">
@@ -60,7 +67,7 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-sm-7 col-md-7">
+                    <div class="col-sm-6 col-md-6">
                         <div class="form-group">
                             <label class="form-label">Producto</label>
                             <select class="form-control" name="idProducto" id="idProducto">
@@ -68,6 +75,12 @@
                             </select>
                         </div>
                     </div>
+                    <!-- <div class="col-sm-3 col-md-3">
+                        <div class="form-group">
+                            <label class="form-label">Clave Producto</label>
+                            <input type="text" class="form-control" name="clave" id="clave">
+                        </div>
+                    </div> -->
                             
                     <div class="col-sm-3 col-md-3">
                         <div class="form-group">
@@ -100,9 +113,10 @@
                             <input type="text" class="form-control" name="costo" placeholder="" id="costo" >
                         </div>
                     </div>
-                    <div class="col-sm-1 col-md-1">
-                    </div>
-                    <div class="col-sm-1 col-md-1">
+                    <!-- <div class="col-sm-1 col-md-1">
+                    </div> -->
+                    <div class="col-sm-3 col-md-3">
+                        <label class="form-label">Agregar</label>   
                         <a href="" type="" id="agregaProductoLista" class="btn btn-success">+</a>
                     </div>
                     <div id="error"></div>

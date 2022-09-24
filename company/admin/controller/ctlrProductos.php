@@ -23,8 +23,10 @@ Class productos {
                 $target_path = "uploads/products/".$v1.$fname;
             }
                                        
-            $datos = array("name" => $_POST["name"],
+            $datos = array("claveProducto" => $_POST["claveProducto"],
+                           "name" => $_POST["name"],
                            "brand" => $_POST["brand"],
+                           "medida" => $_POST["medida"],
                            "eqType" => $_POST["eqType"],
                            "dayPrice" => $_POST["dayPrice"],
                            "weekPrice" => $_POST["weekPrice"],

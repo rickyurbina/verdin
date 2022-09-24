@@ -125,7 +125,7 @@ function crearHTML(nomProducto, nomMedida, nomCantidad){
             let txtProducto = document.createTextNode(prod.producto);            
             let txtLote = document.createTextNode(prod.lote);
             let txtPeso = document.createTextNode( prod.cantidad+ " " + prod.medida);
-            let txtCosto = document.createTextNode(prod.lote);
+            let txtCosto = document.createTextNode(prod.costo);
 
             celdaProducto.appendChild(txtProducto);
             celdaLote.appendChild(txtLote);
