@@ -212,14 +212,23 @@ class mdlSalidas {
 		$stmt = Conexion::conectar()->prepare("DELETE FROM salidasEnc WHERE pedido = :id");
 		$stmt -> bindPARAM(":id",$datosModel, PDO::PARAM_INT);
 
-        $stmt2 = Conexion::conectar()->prepare("DELETE FROM salidas WHERE pedido = :id");
-        $stmt2 -> bindPARAM(":id",$datosModel, PDO::PARAM_INT);
+        // este script busca las entradas correspondientes al pedido para devolver las cantidades corrrespondientes
+        // a cada lote
+        $stmt2 = Conexion::conectar()->prepare("UPDATE entradas e
+                                                INNER JOIN salidas s ON e.idProducto = s.idProducto
+                                                SET e.disponible = e.disponible + s.cantidad
+                                                where e.lote = s.lote and s.pedido = :id");
+		$stmt2 -> bindPARAM(":id",$datosModel, PDO::PARAM_INT);
 
-		if ($stmt->execute() && $stmt2->execute()){
-			return "success";
-		} else {
-			return "error";
-		}
+
+        $stmt3 = Conexion::conectar()->prepare("DELETE FROM salidas WHERE pedido = :id");
+        $stmt3 -> bindPARAM(":id",$datosModel, PDO::PARAM_INT);
+
+        if ($stmt->execute()) $msg = 'success'; else $msg = 'Encabezado';
+        if ($stmt2->execute()) $msg = 'success'; else $msg = 'Devolver';
+        if ($stmt3->execute()) $msg = 'success'; else $msg = 'Salidas';
+
+		return $msg;
 	}
 
     #----------------------------------------------------------------

@@ -4,7 +4,7 @@
     if ($respuesta == "success"){
         echo "<script>
         Swal.fire({
-            title: 'Borrado',
+            title: 'Borrado ". $respuesta ."',
             text: 'El registro ha sio borrado',
             icon: 'error',
             confirmButtonColor: '#3085d6',
@@ -19,7 +19,7 @@
     else{
         echo "<script>
         Swal.fire({
-            title: 'Error',
+            title: 'Error en ". $respuesta ."',
             text: 'No se ha borrado',
             icon: 'warning',
             confirmButtonColor: '#3085d6',
