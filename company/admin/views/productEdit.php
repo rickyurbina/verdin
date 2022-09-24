@@ -23,12 +23,20 @@
             <div class="card-body">
                 <div class="row">
 
-                <div class="col-sm-12 col-md-12">
+                <div class="col-sm-4 col-md-4">
                     <div class="form-group">
-                        <label class="form-label">Name</label>
-                        <input type="text" class="form-control" name="name" value="<?php echo $busca['name']; ?>"  >
+                        <label class="form-label">Clave de Producto</label>
+                        <input type="text" class="form-control" name="claveProducto" value="<?php echo $busca['claveProducto']; ?>" required >
                     </div>
                 </div>
+
+                <div class="col-sm-8 col-md-8">
+                    <div class="form-group">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="name" value="<?php echo $busca['name']; ?>" required >
+                    </div>
+                </div>
+
                 <div class="col-sm-6 col-md-6">
                     <div class="form-group">
                         <label class="form-label">Brand</label>

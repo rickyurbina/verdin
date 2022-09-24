@@ -38,12 +38,13 @@ class mdlProductos {
     
     public static function mdlActualizaProducto($datos){
 
-        $stmt = Conexion::conectar()->prepare("UPDATE `productos` SET `name`=:pName, `brand`=:brand,
+        $stmt = Conexion::conectar()->prepare("UPDATE `productos` SET `name`=:pName, `claveProducto`=:claveProducto, `brand`=:brand,
 		`eqType`=:eqType, `dayPrice`= :dayPrice, `weekPrice`= :weekPrice, `monthPrice`= :monthPrice, `features`=:features,
          `image`=:imagen WHERE idProducto = :idProducto;");
 
         $stmt -> bindParam(":idProducto", $datos["idProducto"], PDO::PARAM_INT);
-        $stmt -> bindParam(":pName", $datos["name"], PDO::PARAM_STR);
+        $stmt -> bindParam(":claveProducto", $datos["claveProducto"], PDO::PARAM_STR);
+		$stmt -> bindParam(":pName", $datos["name"], PDO::PARAM_STR);
         $stmt -> bindParam(":brand", $datos["brand"], PDO::PARAM_STR);
         $stmt -> bindParam(":eqType", $datos["eqType"], PDO::PARAM_STR);
         $stmt -> bindParam(":dayPrice", $datos["dayPrice"], PDO::PARAM_INT);

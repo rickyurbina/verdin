@@ -119,6 +119,7 @@ Class productos {
             }
 
             $datos = array( "idProducto" => $_POST["idProducto"],
+                            "claveProducto" => $_POST["claveProducto"],
                             "name" => $_POST["name"],
                             "brand" => $_POST["brand"],
                             "eqType" => $_POST["eqType"],
