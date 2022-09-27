@@ -16,11 +16,11 @@
                     <div class="row">
                         <div class="col-md-3 text-center">
                             <div class="form-group">
-                                <label class="form-label"># Pedido</label>
+                                <label class="form-label">Pedido <?php echo $siguiente; ?></label>
                                 <!-- <input type="text" class="form-control" name="pedidoNum" id="pedidoNum" required> -->
                                 
-                                <h3 class="text-center"><strong> <?php echo $siguiente; ?></strong></h3>
-                                <input type="text" class="form-control" name="pedidoNum" id="pedidoNum" value="<?php echo $siguiente; ?>" hidden >
+                                
+                                <input type="text" class="form-control" name="pedidoNum" id="pedidoNum" value="<?php echo $siguiente; ?>" >
                             </div>
                         </div>
                         <div class="col-md-9">

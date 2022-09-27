@@ -4,10 +4,12 @@ const listaPedido = document.querySelector("#listaPedido");
 const totalLabel = document.querySelector("#totalPedido");
 const productosDelPedido = document.querySelector("#pedidoBD");
 const totalPedidoBD = document.querySelector("#totalPedidoBD");
+const eliminadosBD = document.querySelector('#eliminadosBD');
 
 let listaProds = [];
 let pedido = [];
 let totalPedido = parseFloat(totalPedidoBD.value);
+let eliminados = [];
 
 // al terminar de cargar el documento creo el Storage y Cargo el pedido en la tabla
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -103,7 +105,7 @@ function creaOpciones(){
 
 
       btnColumn.appendChild(btnAgrearAPedido);
-      console.log(ft);
+      //console.log(ft);
       renglon.innerHTML = `
         <td>${ft.nombre}</td>
         <td>${ft.lote}</td>
@@ -136,7 +138,7 @@ function agregarProductoLista(producto, nuevaCantidad){
 
   producto.cantidad = nuevaCantidad;
   pedido = [...pedido, producto];
-  console.log(pedido);
+  //console.log(pedido);
   creaListaPedido(); 
 }
 
@@ -199,9 +201,20 @@ function eliminarProductoPedido(id){
   totalLabel.innerHTML = `$ ${totalPedido}`;
   totalPedidoBD.value = totalPedido;
 
+  // Producto eliminado
+  const eliminado = pedido.filter(prod => prod.id === id);
+  
+  eliminados = [...eliminados, eliminado];
+  eliminadosBD.value = eliminados;
+
+  console.log(eliminados);
+
+  //se quita el producto del arreglo 
   pedido = pedido.filter(prod => prod.id !== id);
+  // se llama la funcion para crear la lista de productos del pedido nuevamente
   creaListaPedido();
-  // console.log(pedido);
+  
+  
 }
 
 

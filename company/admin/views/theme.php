@@ -161,6 +161,10 @@ setlocale(LC_ALL,"es_ES");
 										$pagina == "eqTypeList" ||
 										$pagina == "eqTypeEdit" ||
 										$pagina == "eqTypeDel" ||
+										$pagina == "clientAdd" ||
+										$pagina == "clientDel" ||
+										$pagina == "clientEdit" ||
+										$pagina == "clientList" ||
 										$pagina == "socioAdd" ||
 										$pagina == "socioDel" ||
 										$pagina == "socioEdit" || 

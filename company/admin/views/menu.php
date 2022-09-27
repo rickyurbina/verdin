@@ -106,13 +106,34 @@
 							</ul>
 						</li>
 
+						<li class="slide <?php if ($pagina == 'clientAdd' || $pagina == 'clientList' ) echo 'is-expanded'; ?>">
+							<a class="side-menu__item 
+								<?php if ($pagina == 'clientAdd' || $pagina == 'clientList' ) 
+										echo 'active'; ?>" data-toggle="slide" href="#">
+										<i class="side-menu__icon icon icon-people"></i>
+										<span class="side-menu__label">Clientes</span>
+										<i class="angle fa fa-angle-right"></i>
+							</a>
+							<ul class="slide-menu">
+								<li><a class="slide-item 
+									<?php if ($pagina == 'socioAdd') 
+											echo 'active'; ?>" href="index.php?page=clientAdd">Agregar</a>
+								</li>
+								<li><a class="slide-item 
+									<?php if ($pagina == 'socioList') 
+											echo 'active'; ?>" href="index.php?page=clientList">Lista</a>
+								</li>
 
-						<li class="slide <?php if ($pagina == 'socioAdd' || $pagina == 'socioList' ) echo 'is-expanded'; ?>">
+							</ul>
+						</li>
+
+
+						<!-- <li class="slide <?php if ($pagina == 'socioAdd' || $pagina == 'socioList' ) echo 'is-expanded'; ?>">
 							<a class="side-menu__item 
 								<?php if ($pagina == 'socioAdd' || $pagina == 'socioList' ) 
 										echo 'active'; ?>" data-toggle="slide" href="#">
 										<i class="side-menu__icon icon icon-people"></i>
-										<span class="side-menu__label">Clientes</span>
+										<span class="side-menu__label">Cajeros</span>
 										<i class="angle fa fa-angle-right"></i>
 							</a>
 							<ul class="slide-menu">
@@ -126,7 +147,7 @@
 								</li>
 
 							</ul>
-						</li>
+						</li> -->
 
 						<li class="slide <?php if ($pagina == 'proveedorAdd' || $pagina == 'proveedorList' ) echo 'is-expanded'; ?>">
 							<a class="side-menu__item 

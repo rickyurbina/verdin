@@ -18,16 +18,16 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form-group">
-                            <label class="form-label"># Orden</label> 
+                            <label class="form-label">Orden: <?php echo $siguiente; ?></label> 
                             
-                            <h3 class="text-center"><strong> <?php echo $siguiente; ?></strong></h3>
-                            <input type="text" class="form-control" name="ordenNum" id="ordenNum" value="<?php echo $siguiente; ?>" hidden>
+                            <h3 class="text-center"><strong> </strong></h3>
+                            <input type="text" class="form-control" name="ordenNum" id="ordenNum" value="<?php echo $siguiente; ?>" required>
 
                         </div>
                     </div>
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-8 col-md-8">
                         <div class="form-group">
                             <label class="form-label">Proveedor</label>
                             <select class="form-control" name="idProveedor" id="idProveedor">
@@ -35,7 +35,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-3 col-md-3">
+                    <div class="col-sm-3 col-md-4">
                         <div class="form-group">
                             <label class="form-label">Concepto</label>
                             <select class="form-control custom-select select2" name="concepto" id="concepto">
@@ -45,7 +45,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-3 col-md-3">
+                    <div class="col-sm-4 col-md-4">
                         <div class="form-group">
                             <label class="form-label">Fecha</label>
                             <input class="form-control fc-datepicker" placeholder="MM/DD/YYYY" type="text" name="fechaMovimiento" id="fechaMovimiento">

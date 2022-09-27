@@ -49,10 +49,13 @@
                         <div class="form-group">
                             <label class="form-label">Fecha</label>
                             <input class="form-control fc-datepicker" type="text" name="fechaMovimiento" value="<?php echo $busca["fecha"]; ?>" >
-                            <input type="text" class="form-control" name="pedidoBD" id="pedidoBD" value='<?php echo $productosJSON; ?>' hidden>
+                            
                             <input type="text" class="form-control" name="totalPedidoBD" id="totalPedidoBD" value='<?php echo $busca["totalPedido"]; ?>' hidden>
+                            
                         </div>
                     </div>
+                    <input type="text" class="form-control" name="pedidoBD" id="pedidoBD" value='<?php echo $productosJSON; ?>' hidden>
+                    <input type="text" class="form-control" name="eliminadosBD" id="eliminadosBD" value='' hidden>
                     <div class="col-sm-9 col-md-9">
                         
                     </div>

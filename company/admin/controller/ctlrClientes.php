@@ -190,7 +190,7 @@ Class clientes {
                 confirmButtonText: "Si, borrar!"
               }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location="index.php?page=productDel&idBorrar="+'.$_GET["idBorrar"].'
+                    window.location="index.php?page=clientDel&idBorrar="+'.$_GET["idBorrar"].'
                 }
               })
               </script>';
