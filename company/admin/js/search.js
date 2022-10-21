@@ -8,6 +8,20 @@ let listaProds = [];
 let pedido = [];
 let totalPedido = 0;
 
+//Asignamos la fecha de hoy al datepicker del formulario
+$(document).ready(function() {
+  var date = new Date();
+  var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+  $('#fechaMovimiento').datepicker({
+      format: 'dd-mm-yyyy',
+      orientation: 'bottom'
+  });
+
+  $('#fechaMovimiento').datepicker('setDate', today);
+
+});
+
 function buscaJS(name) {
   if( name != "" ){
       fetchSearchData(name);
@@ -76,7 +90,7 @@ function creaOpciones(){
       let btnColumn = document.createElement("td");
       let inputColumn = document.createElement("td");
       let inputField = document.createElement("input");
-      inputColumn.style.width="40px";
+      inputField.style.width="40px";
       inputField.setAttribute('id', "cant"+ft.id);
       inputField.setAttribute('min', 1);
       inputField.setAttribute('max', ft.disponible);
@@ -104,10 +118,10 @@ function creaOpciones(){
       btnColumn.appendChild(btnAgrearAPedido);
 
       renglon.innerHTML = `
-        <td>${ft.nombre}</td>
-        <td>${ft.lote}</td>
-        <td>${ft.disponible}</td>
-        <td>${ft.precio}</td>
+        <td style="width:400px">${ft.nombre}</td>
+        <td style="width:40px">${ft.lote}</td>
+        <td style="width:40px">${ft.disponible}</td>
+        <td style="width:40px">${ft.precio}</td>
       `;
 
       renglon.appendChild(inputColumn);

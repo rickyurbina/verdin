@@ -19,6 +19,21 @@ const productsTable = document.querySelector('#productsTable');
 
 let productos = [];
 
+
+//Asignamos la fecha de hoy al datepicker del formulario
+$(document).ready(function() {
+    var date = new Date();
+    var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  
+    $('#fechaMovimiento').datepicker({
+        format: 'dd-mm-yyyy',
+        orientation: 'bottom'
+    });
+  
+    $('#fechaMovimiento').datepicker('setDate', today);
+  
+  });
+
 //Event Listeners
 eventListeners();
 

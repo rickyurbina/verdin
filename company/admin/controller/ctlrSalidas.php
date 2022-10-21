@@ -4,11 +4,24 @@ Class Salidas {
   public static function ctlTicketsAbiertos(){
     $tickets = mdlSalidas::mdlTicketsAbiertos();
 
-    foreach ($tickets as $ticket){
-      echo '<li class="nav-item1">
-                <a class="nav-link" href="index.php?page=salidasEdit&idSalida='.$ticket["pedido"].'">'.$ticket["pedido"].'</a>
-            </li>';
+    if ($tickets){
+      echo '<div class="card">
+              <div class="card-header">
+                  <h3 class="card-title">Tickets Abiertos</h3>
+          
+              </div>
+              <div class="card-body">
+                  <ul class="nav1 nav-tabs">';
+      foreach ($tickets as $ticket){
+        echo '<li class="nav-item1">
+                  <a class="nav-link" href="index.php?page=salidasEdit&idSalida='.$ticket["pedido"].'">'.$ticket["pedido"].'</a>
+              </li>';
+      }
+      echo '</ul>
+          </div>
+      </div>';
     }
+   
 
   }
     public static function ctlRegistraPedido(){
