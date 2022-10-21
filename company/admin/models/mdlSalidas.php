@@ -36,13 +36,13 @@ class mdlSalidas {
 
     public static function mdlRegistraPedido($datos_pedido){
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO `salidasEnc` (`id`, `idCliente`, `fecha`, `pedido`, `totalPedido`) 
-        VALUES (NULL, :idCliente, :fechaMovimiento, :pedido, :totalPedido);");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO `salidasEnc` (`id`, `idCliente`, `fecha`, `pedido`, `totalPedido`, `status`) 
+        VALUES (NULL, :idCliente, :fechaMovimiento, :pedido, :totalPedido, :status);");
 
          $stmt -> bindParam(":pedido", $datos_pedido["pedido"], PDO::PARAM_INT);         
          $stmt -> bindParam(":idCliente", $datos_pedido["idCliente"], PDO::PARAM_INT);
          $stmt -> bindParam(":totalPedido", $datos_pedido["totalPedido"], PDO::PARAM_INT);
-        //  $stmt -> bindParam(":concepto", $datos_pedido["concepto"], PDO::PARAM_STR);
+         $stmt -> bindParam(":status", $datos_pedido["status"], PDO::PARAM_STR);
          $stmt -> bindParam(":fechaMovimiento", $datos_pedido["fechaMovimiento"], PDO::PARAM_STR);
         //  $stmt2 = Conexion::conectar()->prepare("UPDATE productos SET disponibilidad = (SELECT SUM(`cantidad`) FROM `entradas` WHERE `idProducto`= :idProducto) WHERE idProducto = :idProducto");
         //  $stmt2 -> bindParam(":idProducto", $datos["idProducto"], PDO::PARAM_INT);
@@ -62,12 +62,12 @@ class mdlSalidas {
 
     public static function mdlActualizaPedido($datos_pedido){
 
-        $stmt = Conexion::conectar()->prepare("UPDATE `salidasEnc` SET `idCliente` = :idCliente,  `fecha` = :fechaMovimiento, `totalPedido` = :totalPedidoBD  WHERE `pedido` = :pedido;");
+        $stmt = Conexion::conectar()->prepare("UPDATE `salidasEnc` SET `idCliente` = :idCliente,  `fecha` = :fechaMovimiento, `totalPedido` = :totalPedidoBD, `status` = :status  WHERE `pedido` = :pedido;");
 
          $stmt -> bindParam(":pedido", $datos_pedido["pedido"], PDO::PARAM_INT);         
          $stmt -> bindParam(":idCliente", $datos_pedido["idCliente"], PDO::PARAM_INT);
          $stmt -> bindParam(":totalPedidoBD", $datos_pedido["totalPedidoBD"], PDO::PARAM_INT);
-        //  $stmt -> bindParam(":concepto", $datos_pedido["concepto"], PDO::PARAM_STR);
+         $stmt -> bindParam(":status", $datos_pedido["status"], PDO::PARAM_STR);
          $stmt -> bindParam(":fechaMovimiento", $datos_pedido["fechaMovimiento"], PDO::PARAM_STR);
         //  $stmt2 = Conexion::conectar()->prepare("UPDATE productos SET disponibilidad = (SELECT SUM(`cantidad`) FROM `entradas` WHERE `idProducto`= :idProducto) WHERE idProducto = :idProducto");
         //  $stmt2 -> bindParam(":idProducto", $datos["idProducto"], PDO::PARAM_INT);
@@ -242,6 +242,18 @@ class mdlSalidas {
 		return $stmt->fetchAll();
 
 	}
+
+    # ------------------------------------------------------------------------------------------
+    #  Lista todos los tickets abiertos registrados en salidasEnc
+    # ------------------------------------------------------------------------------------------
+
+    public static function mdlTicketsAbiertos(){
+
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM `salidasEnc` WHERE `status`= 'A';");
+         
+        $stmt -> execute();
+        return $stmt->fetchAll();
+    }
 
 
 } //class

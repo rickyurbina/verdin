@@ -3,13 +3,28 @@
     $siguiente = $orden -> ctrSiguienteRegistro('salidas'); 
 ?>
 <div><p></p></div>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Tickets Abiertos</h3>
+
+    </div>
+    <div class="card-body">
+        <ul class="nav1 nav-tabs">
+            <?php
+                $tickets = new Salidas();
+                $tickets -> ctlTicketsAbiertos();
+            ?>            
+        </ul>
+    </div>
+</div>
       <div class="row">    
         <div class="col-xl-6 col-lg-6 col-md-12">
             <div class="card m-b-20">
             <form method="POST">
                 <div class="card-header">
                     <h3 class="card-title">Información del Cliente</h3>
-                    <div class="card-options"><button type="submit" class="btn btn-sm btn-blue" name="regPedido" href="busca.php">Guardad Pedido</button> </div>
+                    <div class="card-options"><button type="submit" class="btn btn-sm btn-yellow" name="pausarPedido">Pausar Pedido</button> </div>
+                    <div class="card-options"><button type="submit" class="btn btn-sm btn-blue" name="regPedido">Guardad Pedido</button> </div>
                 </div>
                 <div class="card-body">
                 
@@ -119,35 +134,5 @@
             </div>
         </div> 
     </div>
-
-
-
-    <!-- <div class="row">
-    <div class="col-xl-6 col-lg-6 col-md-8"> 
-
-            <div class="card">
-            <div class="card-header">
-                <h3 class="card-title" id="totalPedido">Total Pedido $</h3>
-                <div class="card-options"><button class="btn btn-sm btn-blue" href="#">Guardad Pedido</button> </div>
-            </div>
-                <div class="card-body">
-                    <div class="user-tabel table-responsive border-top">                  
-                        <table class="table card-table table-bordered table-hover table-vcenter text-nowrap">
-                            <thead>
-                                <th>Producto</th>
-                                <th>Lote</th>
-                                <th>Precio</th>
-                                <th>Cantidad</th>
-                                <th></th>
-                            </thead>
-                            <tbody class="text-left" id="listaPedido">             
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
 
 

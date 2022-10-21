@@ -1,9 +1,26 @@
 <?php
 Class Salidas {
 
+  public static function ctlTicketsAbiertos(){
+    $tickets = mdlSalidas::mdlTicketsAbiertos();
+
+    foreach ($tickets as $ticket){
+      echo '<li class="nav-item1">
+                <a class="nav-link" href="index.php?page=salidasEdit&idSalida='.$ticket["pedido"].'">'.$ticket["pedido"].'</a>
+            </li>';
+    }
+
+  }
     public static function ctlRegistraPedido(){
+
+      if (isset($_POST["pausarPedido"])){
+        $status = 'A';
+      }
+
       if(isset($_POST["regPedido"])){
-        
+        $status = 'C';
+      }
+      if (isset($_POST["regPedido"]) || isset($_POST["pausarPedido"])){
         $prods = json_decode($_POST["pedidoBD"], true);
         
         $original_date = $_POST["fechaMovimiento"];
@@ -14,6 +31,7 @@ Class Salidas {
                                 "pedido" => $_POST["pedidoNum"],
                                 "concepto" => $_POST["concepto"],
                                 "totalPedido" => $_POST["totalPedidoBD"],
+                                "status" => $status,
                                 "fechaMovimiento" => $fechaMovimiento);
         
         $ingresa = mdlSalidas::mdlRegistraPedido($datos_pedido);
@@ -35,13 +53,13 @@ Class Salidas {
         if ($ingresa != 'error'){
           echo "<script>Swal.fire({
             title: 'Registro Exitoso',
-            text: 'El nuevo usuario ha sio registrado',
+            text: 'El pedido se ha guardado',
             icon: 'success',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Ok'
           }).then((result) => {
             if (result.isConfirmed) {
-                window.location='index.php?page=salidasList'
+                window.location='index.php?page=salidas'
             }
           })
           </script>";
@@ -49,13 +67,13 @@ Class Salidas {
         else if($ingresa == 'error_pedido'){
           echo "<script>Swal.fire({
             title: 'Error en Pedido',
-            text: 'No se pudo guardar la información de la Pedido',
+            text: 'No se pudo guardar la información',
             icon: 'danger',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Ok'
           }).then((result) => {
             if (result.isConfirmed) {
-                window.location='index.php?page=salidasList'
+                window.location='index.php?page=salidas'
             }
           })
           </script>";
@@ -69,12 +87,11 @@ Class Salidas {
             confirmButtonText: 'Ok'
           }).then((result) => {
             if (result.isConfirmed) {
-                window.location='index.php?page=salidasList'
+                window.location='index.php?page=salidast'
             }
           })
           </script>";
         }
-        
       }
     }
 
@@ -82,7 +99,14 @@ Class Salidas {
     # Actualiza los datos de pedidoEnc y borra los datos de productos en salidas para despues volver a insertarlos
     #--------------------------------------------------------------------------------------------------------
     public static function ctlEditaSalida(){
+      if (isset($_POST["pausarPedido"])){
+        $status = 'A';
+      }
+
       if(isset($_POST["updtPedido"])){
+        $status = 'C';
+      }
+      if (isset($_POST["updtPedido"]) || isset($_POST["pausarPedido"])){
         
         $prods = json_decode($_POST["pedidoBD"], true);
         
@@ -93,6 +117,7 @@ Class Salidas {
         $datos_pedido = array ("idCliente" => $_POST["idCliente"],
                                 "pedido" => $_POST["pedidoNum"],
                                 "concepto" => $_POST["concepto"],
+                                "status" => $status,
                                 "totalPedidoBD" => $_POST["totalPedidoBD"],
                                 "fechaMovimiento" => $fechaMovimiento);
         
@@ -119,13 +144,13 @@ Class Salidas {
         if ($ingresa != 'error'){
           echo "<script>Swal.fire({
             title: 'Registro Exitoso',
-            text: 'El nuevo usuario ha sio registrado',
+            text: 'El pedido se ha guardado',
             icon: 'success',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Ok'
           }).then((result) => {
             if (result.isConfirmed) {
-                window.location='index.php?page=salidasList'
+                window.location='index.php?page=salidas'
             }
           })
           </script>";
@@ -133,13 +158,13 @@ Class Salidas {
         else if($ingresa == 'error_pedido'){
           echo "<script>Swal.fire({
             title: 'Error en Pedido',
-            text: 'No se pudo guardar la información de la Pedido',
+            text: 'No se pudo guardar la información del Pedido',
             icon: 'danger',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Ok'
           }).then((result) => {
             if (result.isConfirmed) {
-                window.location='index.php?page=salidasList'
+                window.location='index.php?page=salidas'
             }
           })
           </script>";
@@ -153,7 +178,7 @@ Class Salidas {
             confirmButtonText: 'Ok'
           }).then((result) => {
             if (result.isConfirmed) {
-                window.location='index.php?page=salidasList'
+                window.location='index.php?page=salidas'
             }
           })
           </script>";

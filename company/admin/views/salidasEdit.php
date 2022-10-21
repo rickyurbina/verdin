@@ -13,7 +13,8 @@
             <form method="POST">
                 <div class="card-header">
                     <h3 class="card-title">Información del Cliente</h3>
-                    <div class="card-options"><button type="submit" class="btn btn-warning" name="updtPedido">Actualizar Pedido</button> </div>
+                    <div class="card-options"><button type="submit" class="btn btn-warning" name="pausarPedido">Pausar Pedido</button> </div>
+                    <div class="card-options"><button type="submit" class="btn btn-blue" name="updtPedido">Guardar Pedido</button> </div>
                 </div>
                 <div class="card-body">
                 
@@ -63,8 +64,8 @@
                 </div>
             </form>
             <?php
-                $registro = new Salidas();
-                $registro -> ctlRegistraPedido();
+                // $registro = new Salidas();
+                // $registro -> ctlRegistraPedido();
             ?>
             </div>
         </div>
