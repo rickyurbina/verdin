@@ -20,6 +20,7 @@
 						<td>Proveedor</td>
 						<td>Concepto</td>
 						<td>Fecha Registro</td>
+						<td>Costo</td>
 						<td>opciones</td>
 					</thead>
 					<tbody>
@@ -36,6 +37,7 @@
 							<td>Proveedor</td>
 							<td>Concepto</td>
 							<td>Fecha Registro</td>
+							<td>Costo</td>
 							<td>opciones</td>
 						</tr>
 					</tfoot>

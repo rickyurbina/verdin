@@ -253,6 +253,7 @@ Class Movimientos {
                   <td>'.$item["proveedor"].'</td>                 
                   <td>'.$item["concepto"].'</td>                  
                   <td>'.$registro.'</td>
+                  <td>'.$item["concepto"].'</td>
                   <td>
                       <div class="item-action dropdown">
                           <a href="javascript:void(0)" data-toggle="dropdown" class="icon" aria-expanded="false"><i class="fe fe-more-vertical fs-20 text-dark"></i></a>

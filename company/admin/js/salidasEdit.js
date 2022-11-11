@@ -109,7 +109,7 @@ function creaOpciones(){
       renglon.innerHTML = `
         <td>${ft.nombre}</td>
         <td>${ft.lote}</td>
-        <td>${ft.disponible}</td>
+        <td>${ft.disponible} ${ft.medida}</td>
         <td>${ft.precio}</td>
       `;
 
@@ -168,7 +168,7 @@ function creaListaPedido(){
         <td>${prod.producto}</td>
         <td>${prod.lote}</td>
         <td id="precio-${prod.id}">${prod.precio}</td>
-        <td id="cant-${prod.id}">${prod.cantidad}</td>
+        <td id="cant-${prod.id}">${prod.cantidad} ${prod.medida}</td>
       `;
 
       //renglon.appendChild(inputColumn);

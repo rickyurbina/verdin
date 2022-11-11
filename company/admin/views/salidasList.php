@@ -1,10 +1,8 @@
-<div class="page-header">
-	<h4 class="page-title">Stock List</h4>
-	<ol class="breadcrumb">
-		<li class="breadcrumb-item"><a href="#">Stock Admin</a></li>
-		<li class="breadcrumb-item active" aria-current="page">Stock List</li>
-	</ol>
-</div>
+<br>
+<?php
+	$tickets = new Salidas();
+	$tickets -> ctlTicketsAbiertos();
+?>  
 
 <div class="col-md-12 col-lg-12">
 	<div class="card">

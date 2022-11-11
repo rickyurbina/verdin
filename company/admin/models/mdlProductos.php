@@ -64,9 +64,25 @@ class mdlProductos {
     	#LISTA ProductoS
 	#-------------------------------------
 
-	public static function mdlListaProducto($tabla){
-
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+	public static function mdlListaProducto(){
+		//esta consulta busca la cantidad de productos disponibles ya sea en kgs o piezas y muestra el disponible
+		//para cada opcion de medida, busca en la tabla de productos y en la tabla de entradas
+		$stmt = Conexion::conectar()->prepare("SELECT 
+		  										p.idProducto,
+												p.name,
+												p.brand,
+												p.eqType,
+												SUM( e.disponible ) AS disponible,
+												e.medida
+											FROM entradas e
+											INNER JOIN productos p ON p.idProducto = e.idProducto
+											WHERE e.disponible>0
+											GROUP BY e.medida,   
+													p.idProducto,
+													p.name,
+													p.brand,
+													p.eqType
+											ORDER BY p.name DESC");
 		$stmt->execute();
 
 		#fetchAll(): Obtiene todas las filas de un conjunto de resultados asociado al objeto PDOStatement.

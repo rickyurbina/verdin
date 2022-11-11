@@ -120,7 +120,7 @@ function creaOpciones(){
       renglon.innerHTML = `
         <td style="width:400px">${ft.nombre}</td>
         <td style="width:40px">${ft.lote}</td>
-        <td style="width:40px">${ft.disponible}</td>
+        <td style="width:40px">${ft.disponible} ${ft.medida}</td>
         <td style="width:40px">${ft.precio}</td>
       `;
 

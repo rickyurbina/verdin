@@ -180,7 +180,7 @@ Class productos {
     #------------------------------------------------------------------------------------------------
     public static function ctrListaProductos(){
 
-		$respuesta = mdlProductos::mdlListaProducto("productos");
+		$respuesta = mdlProductos::mdlListaProducto();
 
 		foreach ($respuesta as $row => $item){
             // if ($item["tipoCliente"] == 1) $tipoCliente = '<td>Socio</td>';
@@ -188,10 +188,6 @@ Class productos {
             // if ($item["tipoCliente"] == 3) $tipoCliente = '<td>Referido</td>';
             // $cumple = strftime("%d de %B", strtotime($item["fechaNacimiento"]));
             // $registro = strftime("%d de %B de %Y", strtotime($item["fechaRegistro"]));
-            if ($item["status"]=="yard") $light = '<span class="status-icon bg-success"></span>';
-            if ($item["status"]=="out") $light = '<span class="status-icon bg-danger"></span>';
-            if ($item["status"]=="maintenance") $light = '<span class="status-icon bg-blue"></span>';
-            if ($item["status"]=="reserved") $light = '<span class="status-icon bg-warning"></span>';
 
             echo '
             <tr>
@@ -199,7 +195,7 @@ Class productos {
                 <td>'.$item["name"].'</td>
                 <td>'.$item["brand"].'</td>
                 <td>'.$item["eqType"].'</td>
-                <td>'.$item["disponibilidad"].' '.$item["medida"].'</td>
+                <td>'.$item["disponible"].' '.$item["medida"].'</td>
                 <td>
                     <div class="item-action dropdown">
                         <a href="javascript:void(0)" data-toggle="dropdown" class="icon" aria-expanded="false"><i class="fe fe-more-vertical fs-20 text-dark"></i></a>
