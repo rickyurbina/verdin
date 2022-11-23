@@ -174,6 +174,7 @@ setlocale(LC_ALL,"es_ES");
 										$pagina == "productEdit" || 
 										$pagina == "productList" || 
 										$pagina == "productStatus" ||
+										$pagina == "traspasos" ||
 										$pagina == "logOut" ||
 										$pagina == "search" ){
 												include "views/".$pagina.".php";

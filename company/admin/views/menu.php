@@ -68,6 +68,11 @@
 							</ul>
 						</li>
 
+						<li class="slide <?php if ($pagina == 'traspasos') echo 'is-expanded'; ?>">
+							<a class="side-menu__item <?php if ($pagina == 'traspasos') echo 'active'; ?>" 
+							href="index.php?page=traspasos"><i class="side-menu__icon fa fa-forward"></i><span class="side-menu__label">Traspasos</span></a>
+						</li>
+
 						<!-- <li class="slide <?//php if ($pagina == 'search') echo 'is-expanded'; ?>">
 							<a class="side-menu__item <?//php if ($pagina == 'search') echo 'active'; ?>" href="index.php?page=search"><i class="side-menu__icon fa fa-search"></i><span class="side-menu__label">Busca</span></a>
 						</li> -->
