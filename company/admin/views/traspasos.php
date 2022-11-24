@@ -32,7 +32,8 @@ if (isset($_POST["idProducto"]))
     <div class="row col-12">            
             <?php
                 $registro = new Movimientos();
-                $registro -> ctlTraspasoPiezasAKilos($productoABuscar);  
+                $registro -> ctlTraspasoPiezasAKilos($productoABuscar);
+                $registro -> ctlTraspaso();
             ?>
     </div>
 

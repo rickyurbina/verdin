@@ -364,45 +364,71 @@ Class Movimientos {
 
 
   public static function ctlTraspasoPiezasAKilos($idProducto){
-    echo "estoy en el controlador y recibo ". $idProducto;
-    if ($idProducto != "0"){
+    $piezas = mdlMovimientos::mdlListProductosPiezas($idProducto);
+    $kilos = mdlMovimientos::mdlListProductosKilos($idProducto);
+
+    if (!$piezas && $idProducto != "0") 
+    {
+      echo '<div class="alert alert-primary" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
+                Este producto no tiene lotes en piezas! &nbsp;&nbsp;&nbsp;
+              </div>';
+    echo '<p>&nbsp;&nbsp;</p>';
+    }
+        
+    if (!$kilos && $idProducto != "0") 
+    {
+      echo '<div class="alert alert-primary" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
+                  Este producto no tiene lotes en Kilos! &nbsp;&nbsp;&nbsp;
+                </div>';
+                echo '<p>&nbsp;&nbsp;<br></p>';
+    }
+    
+
+    if ($piezas && $kilos){
       echo '<div class="card p-5">
+                <h3>'.$piezas[0]["nombre"].'</h3><br>
+                <form method="POST">
                 <div class="row">
+                <input type="text" class="form-control" name="idProducto" value="'.$idProducto.'" hidden>
+                
                     <div class="col-xl-6 col-lg-6 col-md-8">   
                         <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Lotes en Piezas </h3>
                         </div>
                         <div class="card-body">
-                    <div class="row">
-                        
-                        <div class="col-sm-4 col-md-4">
-                            <div class="form-group">
-                                <label class="form-label">Lote</label>
-                                <select class="form-control" name="idProveedor" id="idProveedor">
-                                    
-                                </select>
-                            </div>
+                          <div class="row">
+                              
+                              <div class="col-sm-4 col-md-4">
+                                  <div class="form-group">
+                                      <label class="form-label">Lote</label>
+                                      <select class="form-control" name="lotePzas">';
+                                      foreach ($piezas as $pieza) {
+                                          echo '
+                                              <option value="' . $pieza['lote'] . '" disponible="' . $pieza['disponible'] . '"> Lote ' . $pieza['lote'] . ' - Disp ' .$pieza['disponible'] . '</option>
+                                          ';
+                                      }
+                                      echo '</select>
+                                  </div>
+                              </div>
+                              <div class="col-sm-4 col-md-4">
+                                  <div class="form-group">
+                                      <label class="form-label">Cantidad pzas</label>
+                                      <input type="text" class="form-control" name="cantPiezas" value="0" required>
+                                  </div>
+                              </div>
+                              <div class="col-sm-3 col-md-3">
+                                  <div class="form-group">
+                                      <label class="form-label">kgs por pza</label>
+                                      <input type="text" class="form-control" name="proporcion" value="" required>
+                                  </div>
+                              </div>
+                              
+                          </div>
                         </div>
-                        <div class="col-sm-4 col-md-4">
-                            <div class="form-group">
-                                <label class="form-label">Cantidad pzas</label>
-                                <input type="text" class="form-control" name="ordenNum" id="ordenNum" value="" required>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 col-md-3">
-                            <div class="form-group">
-                                <label class="form-label">kgs por pza</label>
-                                <input type="text" class="form-control" name="ordenNum" id="ordenNum" value="" required>
-                            </div>
-                        </div>
-                        <div class="col-sm-9 col-md-9">
-                            
-                        </div>
-
-                    </div>
-                </div>
-                        </div>
+                      </div>
                     </div> 
                     <div class="col-xl-6 col-lg-6 col-md-8">    
                         <div class="card">
@@ -413,9 +439,13 @@ Class Movimientos {
                                 <div class="col-sm-5 col-md-5">
                                     <div class="form-group">
                                         <label class="form-label">Lote</label>
-                                        <select class="form-control" name="idProveedor" id="idProveedor">
-                                            
-                                        </select>
+                                        <select class="form-control" name="loteKilos">';
+                                          foreach ($kilos as $kilo) {
+                                              echo '
+                                                  <option value="' . $kilo['lote'] . '" disponible="' . $kilo['disponible'] . '"> Lote ' . $kilo['lote'] . ' - Disp ' .$kilo['disponible'] . '</option>
+                                              ';
+                                          }
+                                        echo '</select>
                                     </div>
                                 </div>
                             </div>
@@ -424,12 +454,78 @@ Class Movimientos {
                     </div> 
                 </div>
                 <div class="card-footer text-right">
-                    <button type="submit" name="buscaProducto" class="btn btn-blue">Transferir</button>
+                    <button type="submit" name="traspasar" id="btnTransferir" class="btn btn-blue">Transferir</button>
                 </div>
+                </form>
+                
+                
             
             </div>';
     }
     
+  }
+
+  public static function ctlTraspaso(){
+    $traspaso = "";
+    if (isset($_POST["traspasar"]))
+      {
+        if (isset($_POST["lotePzas"]) && isset($_POST["cantPiezas"]) && isset($_POST["proporcion"]) && isset($_POST["loteKilos"]) ){
+
+          $kilosTraspasar = $_POST["cantPiezas"] * $_POST["proporcion"];
+
+          $datos = array (
+                      "idProducto" => $_POST["idProducto"],
+                      "desde" => $_POST["lotePzas"],
+                      "piezasMenos" => $_POST["cantPiezas"],
+                      "para" => $_POST["loteKilos"],
+                      "cantidad" => $kilosTraspasar
+          );
+
+          $traspaso = mdlMovimientos::mdlTraspaso($datos);
+    
+        }
+        // else if($idProducto != "0"){
+        //   // echo '<div class="alert alert-primary" role="alert">
+        //   //       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        //   //       Faltan datos para realizar la operación
+        //   //     </div>';
+        //   //$traspaso = "error";
+        // }
+      }
+
+      if($traspaso == "ok")
+      {
+        echo "<script>Swal.fire({
+            title: 'Traspaso Exitoso',
+            text: 'se realizó el traspaso con exito',
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                window.location='index.php?page=traspasos'
+            }
+          })
+          </script>";
+        }
+        else if($traspaso == "error")
+        {
+            echo "<script>Swal.fire({
+                title: 'Error',
+                text: 'No se pudo guardar la información',
+                icon: 'danger',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Ok'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location='index.php?page=traspasos'
+                }
+              })
+              </script>";
+        }
+
+    
+
   }
 
 }

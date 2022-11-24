@@ -242,6 +242,62 @@ class mdlMovimientos {
 
 	}
 
+    #----------------------------------------------------------------
+	#  Busca las entradas de un producto que se hayan hecho en piezas 
+	#----------------------------------------------------------------
+
+	public static function mdlListProductosPiezas($idProducto){
+
+		$stmt = Conexion::conectar()->prepare("SELECT e.*, p.name as nombre
+                                                FROM entradas AS e
+                                                INNER JOIN productos AS p
+                                                ON e.idProducto = p.idProducto
+                                                where e.idProducto = :idProducto AND e.medida='Piezas';");
+
+        $stmt -> bindPARAM(":idProducto",$idProducto, PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetchAll();
+
+	}
+
+    #----------------------------------------------------------------
+	#  Busca las entradas de un producto que se hayan hecho en Kilos 
+	#----------------------------------------------------------------
+
+	public static function mdlListProductosKilos($idProducto){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM `entradas` WHERE `idProducto` = :idProducto AND `medida`='Kgs';");
+        $stmt -> bindPARAM(":idProducto",$idProducto, PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetchAll();
+
+	}
+
+    #-----------------------------------------------------------------------------
+	#  Aumenta el inventario de un lote en kilos a partir de un lote en piezas
+    #  y en base a la proporcion de kilos por cada pieza asignado por el usuario 
+	#-----------------------------------------------------------------------------
+
+	public static function mdlTraspaso($datos){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE `entradas` SET `disponible` = `disponible` + :cantidad WHERE `idProducto` = :idProducto AND `lote`= :para ;");        
+        $stmt -> bindPARAM(":idProducto",$datos["idProducto"], PDO::PARAM_INT);
+        $stmt -> bindPARAM(":para",$datos["para"], PDO::PARAM_INT);
+        $stmt -> bindPARAM(":cantidad",$datos["cantidad"], PDO::PARAM_INT);
+
+
+        $stmt2 = Conexion::conectar()->prepare("UPDATE `entradas` SET `disponible` = `disponible` - :piezasMenos WHERE `idProducto` = :idProducto AND `lote`= :desde ;");
+        $stmt2 -> bindPARAM(":idProducto",$datos["idProducto"], PDO::PARAM_INT);
+        $stmt2 -> bindPARAM(":desde",$datos["desde"], PDO::PARAM_INT);
+        $stmt2 -> bindPARAM(":piezasMenos",$datos["piezasMenos"], PDO::PARAM_INT);
+		
+
+        if ($stmt->execute() && $stmt2->execute())
+            return "ok";
+        else
+            return "error";
+	}
+
 
 } //class
 
