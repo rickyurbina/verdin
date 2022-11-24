@@ -165,7 +165,6 @@
 
 <?php
     $registro = new Movimientos();
-    $registro -> ctlRegistraOrden();
-    
+    $registro -> ctlRegistraOrden();  
 ?>
 

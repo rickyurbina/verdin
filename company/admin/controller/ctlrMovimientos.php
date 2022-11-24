@@ -362,6 +362,76 @@ Class Movimientos {
 		}
 	}
 
+
+  public static function ctlTraspasoPiezasAKilos($idProducto){
+    echo "estoy en el controlador y recibo ". $idProducto;
+    if ($idProducto != "0"){
+      echo '<div class="card p-5">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-8">   
+                        <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Lotes en Piezas </h3>
+                        </div>
+                        <div class="card-body">
+                    <div class="row">
+                        
+                        <div class="col-sm-4 col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Lote</label>
+                                <select class="form-control" name="idProveedor" id="idProveedor">
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            <div class="form-group">
+                                <label class="form-label">Cantidad pzas</label>
+                                <input type="text" class="form-control" name="ordenNum" id="ordenNum" value="" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-md-3">
+                            <div class="form-group">
+                                <label class="form-label">kgs por pza</label>
+                                <input type="text" class="form-control" name="ordenNum" id="ordenNum" value="" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-9 col-md-9">
+                            
+                        </div>
+
+                    </div>
+                </div>
+                        </div>
+                    </div> 
+                    <div class="col-xl-6 col-lg-6 col-md-8">    
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Lotes en Kilos</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="col-sm-5 col-md-5">
+                                    <div class="form-group">
+                                        <label class="form-label">Lote</label>
+                                        <select class="form-control" name="idProveedor" id="idProveedor">
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div> 
+                </div>
+                <div class="card-footer text-right">
+                    <button type="submit" name="buscaProducto" class="btn btn-blue">Transferir</button>
+                </div>
+            
+            </div>';
+    }
+    
+  }
+
 }
 
 ?>
