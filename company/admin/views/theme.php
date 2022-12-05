@@ -28,7 +28,6 @@ setlocale(LC_ALL,"es_ES");
 		<link rel="icon" href="favicon.ico" type="image/x-icon"/>
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
-
 		<!-- Title -->
 		<title>DC Supply</title>
 		<link rel="stylesheet" href="assets/fonts/fonts/font-awesome.min.css">
@@ -119,65 +118,63 @@ setlocale(LC_ALL,"es_ES");
 				<!-- Sidebar menu-->
 				<?php include "menu.php"; ?>
 
-
-
 				<div class="app-content  my-3 my-md-5">
 					<div class="side-app">
 						
                         <!-- Contenido  -->
 						<?php
-								if($pagina=="inicio" ||
-										$pagina == "salidas" || 
-										$pagina == "salidasAdd" || 
-										$pagina == "salidasList" || 
-										$pagina == "salidasEdita" ||
-										$pagina == "salidasEdit" || 
-										$pagina == "salidaDel" || 
-										$pagina == "entradas" || 
-										$pagina == "entradaAdd" || 
-										$pagina == "entradasList" || 
-										$pagina == "entradasEdit" || 
-										$pagina == "entradaEdit_" || 
-										$pagina == "entradaDel" || 
-										$pagina == "salidas" ||
-										$pagina == "search" ||
-										$pagina == "asistencia" ||
-										$pagina == "mensualidad" ||
-										$pagina == "venta" ||
-										$pagina == "ventaList" ||
-										$pagina == "userEdit" || 
-										$pagina == "userList" || 
-										$pagina == "userAdd" ||
-										$pagina == "userDel" ||
-										$pagina == "proveedorEdit" || 
-										$pagina == "proveedorList" || 
-										$pagina == "proveedorAdd" ||
-										$pagina == "proveedorDel" ||
-										$pagina == "brandAdd" ||
-										$pagina == "brandList" ||
-										$pagina == "brandEdit" ||
-										$pagina == "brandDel" ||
-										$pagina == "eqTypeAdd" ||
-										$pagina == "eqTypeList" ||
-										$pagina == "eqTypeEdit" ||
-										$pagina == "eqTypeDel" ||
-										$pagina == "clientAdd" ||
-										$pagina == "clientDel" ||
-										$pagina == "clientEdit" ||
-										$pagina == "clientList" ||
-										$pagina == "socioAdd" ||
-										$pagina == "socioDel" ||
-										$pagina == "socioEdit" || 
-										$pagina == "socioList" ||
-										$pagina == "productAdd" ||
-										$pagina == "productDel" ||
-										$pagina == "productEdit" || 
-										$pagina == "productList" || 
-										$pagina == "productStatus" ||
-										$pagina == "traspasos" ||
-										$pagina == "logOut" ||
-										$pagina == "search" ){
-												include "views/".$pagina.".php";
+							if($pagina=="inicio" ||
+									$pagina == "salidas" || 
+									$pagina == "salidasAdd" || 
+									$pagina == "salidasList" || 
+									$pagina == "salidasEdita" ||
+									$pagina == "salidasEdit" || 
+									$pagina == "salidaDel" || 
+									$pagina == "entradas" || 
+									$pagina == "entradaAdd" || 
+									$pagina == "entradasList" || 
+									$pagina == "entradasEdit" || 
+									$pagina == "entradaEdit_" || 
+									$pagina == "entradaDel" || 
+									$pagina == "salidas" ||
+									$pagina == "search" ||
+									$pagina == "asistencia" ||
+									$pagina == "mensualidad" ||
+									$pagina == "venta" ||
+									$pagina == "ventaList" ||
+									$pagina == "userEdit" || 
+									$pagina == "userList" || 
+									$pagina == "userAdd" ||
+									$pagina == "userDel" ||
+									$pagina == "proveedorEdit" || 
+									$pagina == "proveedorList" || 
+									$pagina == "proveedorAdd" ||
+									$pagina == "proveedorDel" ||
+									$pagina == "brandAdd" ||
+									$pagina == "brandList" ||
+									$pagina == "brandEdit" ||
+									$pagina == "brandDel" ||
+									$pagina == "eqTypeAdd" ||
+									$pagina == "eqTypeList" ||
+									$pagina == "eqTypeEdit" ||
+									$pagina == "eqTypeDel" ||
+									$pagina == "clientAdd" ||
+									$pagina == "clientDel" ||
+									$pagina == "clientEdit" ||
+									$pagina == "clientList" ||
+									$pagina == "socioAdd" ||
+									$pagina == "socioDel" ||
+									$pagina == "socioEdit" || 
+									$pagina == "socioList" ||
+									$pagina == "productAdd" ||
+									$pagina == "productDel" ||
+									$pagina == "productEdit" || 
+									$pagina == "productList" || 
+									$pagina == "productStatus" ||
+									$pagina == "traspasos" ||
+									$pagina == "logOut" ||
+									$pagina == "search" ){
+											include "views/".$pagina.".php";
 								}
 						?>
                         <!-- fin de contenido -->

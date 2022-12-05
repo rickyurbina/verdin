@@ -36,8 +36,7 @@ if (isset($_POST["idProducto"]))
                 $registro -> ctlTraspaso();
             ?>
     </div>
-
-        
+  
     </div>
 
 
