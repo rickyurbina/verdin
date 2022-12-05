@@ -76,7 +76,6 @@ class mdlProductos {
 												e.medida
 											FROM entradas e
 											INNER JOIN productos p ON p.idProducto = e.idProducto
-											WHERE e.disponible>0
 											GROUP BY e.medida,   
 													p.idProducto,
 													p.name,
